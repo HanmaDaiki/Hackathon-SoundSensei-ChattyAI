@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Bellota Text', cursive;
+  font-weight: 700;
+  src: url(../fonts/BellotaText/BellotaText-Bold.ttf) format('truetype')
+    url(../fonts/BellotaText/BellotaText-Bold.woff) format('woff')
+    url(../fonts/BellotaText/BellotaText-Bold.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Bellota Text', cursive;
+  font-weight: 300;
+  src: url(../fonts/BellotaText/BellotaText-Regular.ttf) format('truetype')
+    url(../fonts/BellotaText/BellotaText-Regular.woff) format('woff')
+    url(../fonts/BellotaText/BellotaText-Regular.woff2) format('woff2');
+}
+
+
+@font-face {
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 400;
+  src: url(../fonts/SFProDisplay/SF-Pro-Display-Regular.ttf) format('truetype')
+    url(../fonts/SFProDisplay/SF-Pro-Display-Regular.woff) format('woff');
+}

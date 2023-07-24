@@ -1,0 +1,33 @@
+@keyframes animate-mic {
+  0% {
+    background-image: url(../../../images/mic1.png);
+  }
+  33% {
+    background-image: url(../../../images/mic2.png);
+  }
+  66% {
+    background-image: url(../../../images/mic3.png);
+  }
+  100% {
+    background-image: url(../../../images/mic3.png);
+  }
+}
+
+.mic {
+  background-image: url(../../../images/mic.png);
+  width: 178px;
+  height: 160px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: transparent;
+
+  &:active {
+    background-image: url(../../../images/mic1.png);
+    animation-name: animate-mic;
+    animation-duration: 0.65s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(1, end);
+  }
+}

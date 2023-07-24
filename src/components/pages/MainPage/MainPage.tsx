@@ -8,6 +8,8 @@ import { StoryState } from '../../../interfaces/StoryState';
 import randomImg from '../../../images/random-image.jpg';
 import styles from './MainPage.module.scss';
 import { Transcribe } from '../../simple/Transcribe/Transcribe';
+import { Chat } from '../../simple/Chat/Chat';
+import { Header } from '../../simple/Header/Header';
 
 
 export const MainPage: FC = () => {
@@ -15,8 +17,6 @@ export const MainPage: FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
-
-  const { currentStory } = useSelector((state: { story: StoryState }) => state.story);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,21 +29,23 @@ export const MainPage: FC = () => {
 
   return (
     <div className={styles.main}>
-      <h1>Main Page</h1>
+      {/* <h1>Main Page</h1>
       <img src={randomImg} alt={`Картинка ${randomImg}`} width={200} />
       <div className={styles['output']}>
         {currentStory.map((story, index) => (
           <p key={index}>{story}</p>
         ))}
       </div>
-      <form onSubmit={handleSubmit}>
-        <textarea onChange={(elser) => setPrompt(elser.target.value)} value={prompt} />
-        <button type='submit'>Спроси у OpenAI</button>
-      </form>
       {loading && <p>Получаем ответ...</p>}
       
       <RecorderMic />
-      <Transcribe />
+      <Transcribe /> */}
+      <Header from='Сказочник' />
+      <Chat />
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <input placeholder='Какую сказку вы хотите?' onChange={(elser) => setPrompt(elser.target.value)} value={prompt} />
+        <button type='submit'></button>
+      </form>
     </div>
   );
 };
