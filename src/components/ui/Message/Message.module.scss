@@ -1,3 +1,9 @@
+.container {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
 .message {
   padding: 12px 24px 20px;
   border-radius: 32px;
@@ -13,4 +19,15 @@
   align-items: center;
   width: 350px;
   margin-bottom: 24px;
+  align-self: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background-image: url(../../../images/avatar-bot.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 50%;
 }

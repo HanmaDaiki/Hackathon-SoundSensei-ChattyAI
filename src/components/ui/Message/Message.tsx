@@ -9,5 +9,10 @@ interface IProps extends PropsWithChildren {
 export const Message: FC<IProps> = (props) => {
   const { botMessage, children } = props;
 
-  return <div className={cn(styles.message, botMessage && styles.bot)}>{children}</div>;
+  return (
+    <div className={styles.container}>
+      {botMessage && <div className={styles.avatar} />}
+      <div className={cn(styles.message, botMessage && styles.bot)}>{children}</div>
+    </div>
+  );
 };
