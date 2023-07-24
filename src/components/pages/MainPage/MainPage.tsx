@@ -10,6 +10,7 @@ import styles from './MainPage.module.scss';
 import { Transcribe } from '../../simple/Transcribe/Transcribe';
 import { Chat } from '../../simple/Chat/Chat';
 import { Header } from '../../simple/Header/Header';
+import { Tools } from '../../simple/Tools/Tools';
 
 
 export const MainPage: FC = () => {
@@ -46,6 +47,8 @@ export const MainPage: FC = () => {
         <input placeholder='Какую сказку вы хотите?' onChange={(elser) => setPrompt(elser.target.value)} value={prompt} />
         <button type='submit'></button>
       </form>
+
+      <Tools />
     </div>
   );
 };
