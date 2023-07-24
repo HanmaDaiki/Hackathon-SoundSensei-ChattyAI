@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { StoryState } from '../../../interfaces/StoryState';
 import randomImg from '../../../images/random-image.jpg';
 import styles from './MainPage.module.scss';
+import { Transcribe } from '../../simple/Transcrible/Transcrible';
 
 
 export const MainPage: FC = () => {
@@ -42,6 +43,7 @@ export const MainPage: FC = () => {
       {loading && <p>Получаем ответ...</p>}
       
       <RecorderMic />
+      <Transcribe />
     </div>
   );
 };
