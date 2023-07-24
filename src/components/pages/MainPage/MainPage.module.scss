@@ -1,0 +1,29 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+
+  h1 {
+    font-size: 46px; 
+    color: red;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  textarea {
+    font-size: 14px;
+    width: 400px;
+    min-height: 100px;
+  }
+
+  .output {
+    width: 800px;
+  }
+}
