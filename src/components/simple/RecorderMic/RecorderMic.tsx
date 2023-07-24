@@ -6,7 +6,12 @@ const Mp3Recorder = new MicRecorderToMp3({
   bitRate: 128
 });
 
-export function RecorderMic() {
+type RecorderProps = {
+  children?: React.ReactNode;
+  makeFile: (blob: Blob) => void;
+}
+
+export function RecorderMic(props: RecorderProps) {
   const [blob, setBlob] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [timer, setTimer] = useState(0);
@@ -23,6 +28,7 @@ export function RecorderMic() {
     };
   }, [isRecording])
 
+
   const startRecording = () => {
     setIsRecording(true);
     Mp3Recorder.start();
@@ -35,6 +41,7 @@ export function RecorderMic() {
         const blobURL = URL.createObjectURL(new Blob(blob))
         setBlob(blobURL)
         setIsRecording(false);
+        props.makeFile(new Blob(blob));
       }).catch((e: Error) => console.log(e));
   }
 

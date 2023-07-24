@@ -3,6 +3,7 @@ import { ChangeEvent, useState, useEffect } from "react";
 import { apiSpeechFlow } from "../../../utils/ApiSpeechFlow";
 
 import styles from "./Transcribe.module.scss";
+import { RecorderMic } from "../RecorderMic/RecorderMic";
 
 export function Transcribe() {
   const [file, setFile] = useState<File>();
@@ -21,6 +22,29 @@ export function Transcribe() {
       }
     });
   };
+
+  const makeFile = (blob: Blob) => {
+
+    console.log('makefile fired');
+
+    const file = new File([blob], 'recording.mp3');
+    console.log(file);
+      
+    setFile(file);
+
+
+  }
+
+useEffect(() => {
+  if (file) {
+
+    handleUploadClick();
+
+  }
+
+}, [file])
+
+
 
   useEffect(() => {
     if (isSubmissionOk) {
@@ -70,6 +94,7 @@ export function Transcribe() {
   return (
     <div className={styles.container}>
       <h2>Hey siri</h2>
+      <RecorderMic makeFile={makeFile} />
       <input type="file" onChange={handleFileChange} />
 
       <button onClick={handleUploadClick}>Распознай меня</button>

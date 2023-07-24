@@ -42,7 +42,7 @@ export const MainPage: FC = () => {
       </form>
       {loading && <p>Получаем ответ...</p>}
       
-      <RecorderMic />
+      {/* <RecorderMic /> */}
       <Transcribe />
     </div>
   );
