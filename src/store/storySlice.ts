@@ -31,6 +31,15 @@ const storySlice = createSlice({
     addUserMessageToCurrentStory: (state, action) => {
       state.currentStory.push({ owner: 'user', text: action.payload });
     },
+
+    nextStory: (state) => {
+      if(state.allStories.length === 20) {
+        state.allStories.shift();
+      }
+
+      state.allStories.push([...state.currentStory.filter(story => story.owner === 'bot')]);
+      state.currentStory = [{ owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' }];
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(getOpenAiStory.fulfilled, (state, action) => {
@@ -41,5 +50,5 @@ const storySlice = createSlice({
   },
 });
 
-export const { addUserMessageToCurrentStory } = storySlice.actions;
+export const { addUserMessageToCurrentStory, nextStory } = storySlice.actions;
 export const storyReducer = storySlice.reducer;
