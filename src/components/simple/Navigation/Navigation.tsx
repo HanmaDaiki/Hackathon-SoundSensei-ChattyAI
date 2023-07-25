@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import magicBall from '../../../images/magic-ball.png';
 import heart from '../../../images/heart.png';
-import star from '../../../images/star.png';
+// import star from '../../../images/star.png';
 import book from '../../../images/book.png';
 import styles from './Navigation.module.scss';
 
@@ -22,22 +22,23 @@ export const Navigation: FC = () => {
         className={({ isActive, isPending }) => (isPending ? styles.pending : isActive ? styles.active : styles.link)}
       >
         <img src={heart} alt={'Сердечко'} width={32} height={32}/>
-        Избраное
+        {/* Избранное */}
+        Favorites
       </NavLink>
       <NavLink
         to='/my-fairy-tales'
         className={({ isActive, isPending }) => (isPending ? styles.pending : isActive ? styles.active : styles.link)}
       >
-        <img src={star} alt={'Звезда'} width={43} height={41}/>
-        Мои сказки
+        <img src={book} alt={'Книга'} width={43} height={41}/>
+        Библиотека
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to='/settings'
         className={({ isActive, isPending }) => (isPending ? styles.pending : isActive ? styles.active : styles.link)}
       >
         <img src={book} alt={'Кинга'} width={47} height={30}/>
         Настройки
-      </NavLink>
+      </NavLink> */}
     </nav>
   );
 };

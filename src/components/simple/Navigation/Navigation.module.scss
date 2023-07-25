@@ -1,15 +1,16 @@
 .navigation {
   display: flex;
   flex-direction: column;
-  width: 365px;
+  width: 349px;
+  padding-right: 16px;
 
   a {
     padding: 28px 32px;
     text-decoration: none;
-    font-family: 'Bellota Text', cursive;
+    font-family: 'Lena';
     font-size: 24px;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
     line-height: normal;
     box-sizing: border-box;
     letter-spacing: 0.48px;
