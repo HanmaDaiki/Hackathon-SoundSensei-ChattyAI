@@ -2,15 +2,19 @@ import { Routes, Route } from 'react-router-dom';
 
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { MainPage } from './pages/MainPage/MainPage';
-import { Header } from './simple/Header/Header';
+import { SideBar } from './simple/SideBar/SideBar';
 import styles from './App.module.scss';
+import { Header } from './simple/Header/Header';
 
 export function App() {
   return (
     <div className={styles.app}>
-      <Header />
+      <SideBar />
       <Routes>
         <Route path='/' element={<MainPage />} />
+        <Route path='/favorites' element={<Header from='Избраное'/>} />
+        <Route path='/my-fairy-tales' element={<Header from='Мои сказки'/>} />
+        <Route path='/settings' element={<Header from='Настройки'/>} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </div>
