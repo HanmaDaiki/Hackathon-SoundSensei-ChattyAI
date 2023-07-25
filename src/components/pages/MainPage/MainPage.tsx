@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { RecorderMic } from '../../simple/RecorderMic/RecorderMic';
-import { getOpenAiStory } from '../../../store/storySlice';
+import { addUserMessageToCurrentStory, getOpenAiStory } from '../../../store/storySlice';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { StoryState } from '../../../interfaces/StoryState';
 import randomImg from '../../../images/random-image.jpg';
@@ -11,7 +11,6 @@ import { Transcribe } from '../../simple/Transcribe/Transcribe';
 import { Chat } from '../../simple/Chat/Chat';
 import { Header } from '../../simple/Header/Header';
 import { Tools } from '../../simple/Tools/Tools';
-
 
 export const MainPage: FC = () => {
   const [prompt, setPrompt] = useState<string>('');
@@ -22,6 +21,8 @@ export const MainPage: FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    dispatch(addUserMessageToCurrentStory(prompt));
+    setPrompt('');
 
     await dispatch(getOpenAiStory({ prompt }));
 
@@ -44,7 +45,12 @@ export const MainPage: FC = () => {
       <Header from='Сказочник' />
       <Chat />
       <form className={styles.form} onSubmit={handleSubmit}>
-        <input placeholder='Какую сказку вы хотите?' onChange={(elser) => setPrompt(elser.target.value)} value={prompt} />
+        <input
+          disabled={loading ? true : false}
+          placeholder={loading ? 'Сказочник генерирует сказку...' : 'Какую сказку вы хотите?'}
+          onChange={(elser) => setPrompt(elser.target.value)}
+          value={prompt}
+        />
         <button type='submit'></button>
       </form>
 

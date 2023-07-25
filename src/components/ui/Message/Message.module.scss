@@ -7,8 +7,6 @@
 .message {
   padding: 12px 24px 20px;
   border-radius: 32px;
-  background: #7386EB;
-  color: #F8F8FD;
   font-family: 'SF Pro Display', sans-serif;
   font-size: 18px;
   font-style: normal;
@@ -18,8 +16,17 @@
   display: flex;
   align-items: center;
   width: 350px;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
   align-self: center;
+  margin-left: 463px;
+  background-color: #E0E6FF;
+  color: #5E72E1;
+
+  &.bot {
+    margin-left: 0;
+    background: #7386EB;
+    color: #F8F8FD;
+  }
 }
 
 .avatar {

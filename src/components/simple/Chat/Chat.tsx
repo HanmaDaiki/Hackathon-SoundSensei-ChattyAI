@@ -11,7 +11,7 @@ export const Chat: FC = () => {
   return(
     <div className={styles.chat}>
       {currentStory.map((story, index) => (
-        <Message key={index} botMessage={true}>{story}</Message>
+        <Message key={index} botMessage={story.owner === 'bot'}>{story.text}</Message>
       ))}
     </div>
   );
