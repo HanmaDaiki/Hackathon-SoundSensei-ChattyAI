@@ -1,0 +1,33 @@
+.navigation {
+  display: flex;
+  flex-direction: column;
+  width: 365px;
+
+  a {
+    padding: 28px 32px;
+    text-decoration: none;
+    font-family: 'Bellota Text', cursive;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    box-sizing: border-box;
+    letter-spacing: 0.48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    &.active {
+      background-color: #EFF2FF;
+      color: #B795FF;
+      border-radius: 0px 32px 32px 0px;
+    }
+
+    &.link {
+      color: #F8F8FD;
+    }
+    &.pending {
+      color: #F8F8FD;
+    }
+  }
+}

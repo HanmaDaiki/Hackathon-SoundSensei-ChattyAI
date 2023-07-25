@@ -1,4 +1,9 @@
+export interface Message {
+  owner: 'bot' | 'user';
+  text: string;
+}
+
 export interface StoryState {
-  currentStory: string[];
-  allStories: string[][];
+  currentStory: Message[];
+  allStories: Message[][];
 }

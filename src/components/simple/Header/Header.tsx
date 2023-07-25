@@ -2,6 +2,11 @@ import { FC } from 'react';
 
 import styles from './Header.module.scss';
 
-export const Header: FC = () => {
-  return <header className={styles.header}>Heder закрыт на ремонт, но вскоре он тут будет!</header>;
+interface IProps {
+  from: string;
+}
+export const Header: FC<IProps> = (props) => {
+  const { from } = props;
+
+  return <header className={styles.header}>{from}</header>;
 };
