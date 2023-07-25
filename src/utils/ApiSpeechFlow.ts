@@ -4,16 +4,6 @@ import { APIResponseTypePost } from '../interfaces/APIResponseTypePost';
 const API_KEY_ID = 'rWfRbX6HsBLzPdQi';
 const API_KEY_SECRET = 'TbYnMRWb2d7rLqgn';
 
-// const API_KEY_ID = process.env.SPEECHFLOW_API_KEY_ID;
-// const API_KEY_SECRET = process.env.SPEECHFLOW_API_KEY_SECRET;
-
-
-// // The translation result type.
-// // 1, the default result type, the json format for sentences and words with begin time and end time.
-// // 2, the json format for the generated subtitles with begin time and end time.
-// // 3, the srt format for the generated subtitles with begin time and end time.
-
-// // 4, the plain text format for transcription results without begin time and end time.
 type TranscriptionResultType = 1 | 2 | 3 | 4;
 
 class ApiSpeechFlow {
@@ -29,6 +19,7 @@ class ApiSpeechFlow {
   }
 
   postTranscription(formData: FormData) {
+    console.log(formData);
     return fetch(`${this.baseURL}${this.postPath}`, {
       method: 'POST',
       headers: {
@@ -36,7 +27,6 @@ class ApiSpeechFlow {
         keySecret: this.apiKeySecret,
         mode: 'no-cors',
       },
-
       body: formData,
     })
       .then((res) => res.json())
@@ -62,8 +52,7 @@ class ApiSpeechFlow {
         return data as Promise<APIResponseTypeGet>;
       })
       .catch((err) => {
-                console.log(err);
-
+        console.log(err);
       });
   }
 }

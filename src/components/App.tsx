@@ -3,9 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { MainPage } from './pages/MainPage/MainPage';
 import { SideBar } from './simple/SideBar/SideBar';
-import styles from './App.module.scss';
 import { Header } from './simple/Header/Header';
-import { Transcribe } from './simple/Transcribe/Transcribe';
+import styles from './App.module.scss';
 
 export function App() {
   return (

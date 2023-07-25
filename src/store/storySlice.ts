@@ -2,8 +2,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { StoryState } from '../interfaces/StoryState';
 import { Configuration, OpenAIApi } from 'openai';
 
-import { openaiSettings } from '../utils/constants';
-
 const initialState: StoryState = {
   currentStory: [{ owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' }],
   allStories: [],
