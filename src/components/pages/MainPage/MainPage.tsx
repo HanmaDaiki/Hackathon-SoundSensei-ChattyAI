@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import { useSelector } from 'react-redux';
+import cn from 'classnames';
 
 import { RecorderMic } from '../../simple/RecorderMic/RecorderMic';
 import { addUserMessageToCurrentStory, getOpenAiStory } from '../../../store/storySlice';
@@ -15,6 +16,7 @@ import { Tools } from '../../simple/Tools/Tools';
 export const MainPage: FC = () => {
   const [prompt, setPrompt] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [isMicHovered, toggleIsMicHovered] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
 
@@ -28,6 +30,10 @@ export const MainPage: FC = () => {
 
     setLoading(false);
   };
+
+  const handleMicHover = () => {
+    toggleIsMicHovered(!isMicHovered);
+  }
 
   return (
     <div className={styles.main}>
@@ -44,7 +50,7 @@ export const MainPage: FC = () => {
       <Transcribe /> */}
       <Header from='Сказочник' />
       <Chat />
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={cn(styles.form, isMicHovered? styles.formwithhover: null)} onSubmit={handleSubmit}>
         <input
           disabled={loading ? true : false}
           placeholder={loading ? 'Сказочник генерирует сказку...' : 'Какую сказку вы хотите?'}
@@ -54,7 +60,7 @@ export const MainPage: FC = () => {
         <button type='submit'></button>
       </form>
 
-      <Tools />
+      <Tools handleHover={handleMicHover}/>
     </div>
   );
 };
