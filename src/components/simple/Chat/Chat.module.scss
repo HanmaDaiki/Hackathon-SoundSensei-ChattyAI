@@ -1,12 +1,15 @@
 .chat {
-  padding: 40px 0 0 0;
+  margin-left: 135px;
+  margin-top: 40px;
+  max-width: 670px;
+
   box-sizing: border-box;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;
   height: 75vh;
-  // overflow-y: scroll;
+  overflow-y: scroll;
 
   &::-webkit-scrollbar {
     width: 7px;

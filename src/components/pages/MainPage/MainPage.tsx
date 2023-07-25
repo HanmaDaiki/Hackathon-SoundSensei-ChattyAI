@@ -53,28 +53,24 @@ export const MainPage: FC = () => {
       <RecorderMic />
       <Transcribe /> */}
       <Header from="Сказочник" />
-      <div className={styles.chatcontainer}>
-        <Chat />
-        <form
-          className={cn(
-            styles.form,
-            isMicHovered ? styles.formwithhover : null
-          )}
-          onSubmit={handleSubmit}
-        >
-          <input
-            disabled={loading ? true : false}
-            placeholder={
-              loading
-                ? "Сказочник генерирует сказку..."
-                : "Какую сказку вы хотите?"
-            }
-            onChange={(elser) => setPrompt(elser.target.value)}
-            value={prompt}
-          />
-          <button type="submit"></button>
-        </form>
-      </div>
+      <Chat />
+
+      <form
+        className={cn(styles.form, isMicHovered ? styles.formwithhover : null)}
+        onSubmit={handleSubmit}
+      >
+        <input
+          disabled={loading ? true : false}
+          placeholder={
+            loading
+              ? "Сказочник генерирует сказку..."
+              : "Какую сказку вы хотите?"
+          }
+          onChange={(elser) => setPrompt(elser.target.value)}
+          value={prompt}
+        />
+        <button type="submit"></button>
+      </form>
 
       <Tools handleHover={handleMicHover} />
     </div>
