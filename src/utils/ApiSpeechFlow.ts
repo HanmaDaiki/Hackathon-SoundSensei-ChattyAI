@@ -4,6 +4,10 @@ import { APIResponseTypePost } from '../interfaces/APIResponseTypePost';
 const API_KEY_ID = 'rWfRbX6HsBLzPdQi';
 const API_KEY_SECRET = 'TbYnMRWb2d7rLqgn';
 
+// const API_KEY_ID = process.env.SPEECHFLOW_API_KEY_ID;
+// const API_KEY_SECRET = process.env.SPEECHFLOW_API_KEY_SECRET;
+
+
 // // The translation result type.
 // // 1, the default result type, the json format for sentences and words with begin time and end time.
 // // 2, the json format for the generated subtitles with begin time and end time.
@@ -24,12 +28,6 @@ class ApiSpeechFlow {
     this.apiKeySecret = apiKeySecret;
   }
 
-  // _checkResponse(res: Response) {
-  //   if (res.ok) {
-  //     return res.json();
-  //   } else return Promise.reject(res.status);
-  //   }
-
   postTranscription(formData: FormData) {
     return fetch(`${this.baseURL}${this.postPath}`, {
       method: 'POST',
@@ -45,7 +43,9 @@ class ApiSpeechFlow {
       .then((data) => {
         return data as Promise<APIResponseTypePost>;
       })
-      .catch(() => {});
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   queryTranscriptionResult(taskId: string, resultType: TranscriptionResultType) {
@@ -61,8 +61,11 @@ class ApiSpeechFlow {
       .then((data) => {
         return data as Promise<APIResponseTypeGet>;
       })
-      .catch(() => {});
+      .catch((err) => {
+                console.log(err);
+
+      });
   }
 }
 
-export const apiSpeechFlow = new ApiSpeechFlow(API_KEY_ID, API_KEY_SECRET);
+export const apiSpeechFlow = new ApiSpeechFlow(API_KEY_ID || "", API_KEY_SECRET || "");

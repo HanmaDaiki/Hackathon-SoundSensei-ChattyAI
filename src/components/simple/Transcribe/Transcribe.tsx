@@ -1,9 +1,7 @@
 import { ChangeEvent, useState, useEffect } from "react";
-
 import { apiSpeechFlow } from "../../../utils/ApiSpeechFlow";
-
-import styles from "./Transcribe.module.scss";
 import { RecorderMic } from "../RecorderMic/RecorderMic";
+import styles from "./Transcribe.module.scss";
 
 export function Transcribe() {
   const [file, setFile] = useState<File>();
@@ -12,8 +10,7 @@ export function Transcribe() {
   const [transResult, setTransResult] = useState("");
   const [taskId, setTaskId] = useState("");
 
-
-  const handleShowClick = () => { 
+  const handleShowResult = () => { 
     apiSpeechFlow.queryTranscriptionResult(taskId, 4).then((res) => {
       console.log("result: ", res);
       if (res && res.code === 11000) {
@@ -24,32 +21,20 @@ export function Transcribe() {
   };
 
   const makeFile = (blob: Blob) => {
-
     console.log('makefile fired');
-
     const file = new File([blob], 'recording.mp3');
-    console.log(file);
-      
     setFile(file);
-
-
   }
 
 useEffect(() => {
-  if (file) {
-
-    handleUploadClick();
-
-  }
-
+  if (file) handleSubmitRecording();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [file])
 
-
-
-  useEffect(() => {
+useEffect(() => {
     if (isSubmissionOk) {
       const interval = setInterval(() => {
-        handleShowClick();
+        handleShowResult();
       }, 2000);
 
       return(() => clearInterval(interval));
@@ -57,13 +42,13 @@ useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSubmissionOk, isTransReady]);
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
-    }
-  };
+  // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files) {
+  //     setFile(e.target.files[0]);
+  //   }
+  // };
 
-  const handleUploadClick = () => {
+  const handleSubmitRecording = () => {
     if (!file) return;
     const formData = new FormData();
     formData.append("lang", "ru");
@@ -71,7 +56,6 @@ useEffect(() => {
 
     apiSpeechFlow.postTranscription(formData).then((res) => {
       console.log("result: ", res);
-
       if (res && res.code === 10000) {
         setIsSubmissionOk(true);
         setTaskId(res.taskId);
@@ -79,33 +63,14 @@ useEffect(() => {
     });
   };
 
-  // const handleSuccess = (stream) => {
-  //   if (window.URL) {
-  //     player.srcObject = stream;
-  //   } else {
-  //     player.src = stream;
-  //   }
-  // };
-
-  // navigator.mediaDevices
-  //   .getUserMedia({ audio: true, video: false })
-  //   .then(handleSuccess);
 
   return (
     <div className={styles.container}>
       <h2>Hey siri</h2>
       <RecorderMic makeFile={makeFile} />
-      <input type="file" onChange={handleFileChange} />
-
-      <button onClick={handleUploadClick}>Распознай меня</button>
-      {isSubmissionOk && <span>Record submitted</span>}
-
-      <br />
       {!isTransReady && isSubmissionOk && <p>Working...</p>}
-
       {isTransReady && <p>{transResult}</p>}
 
-      {/* <audio id="player" ref={player} controls></audio> */}
     </div>
   );
 }
