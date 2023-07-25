@@ -14,7 +14,6 @@ export function App() {
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/favorites' element={<Header from='Избраное'/>} />
-        <Route path='/test' element={<Transcribe/>} />
         <Route path='/my-fairy-tales' element={<Header from='Мои сказки'/>} />
         <Route path='/settings' element={<Header from='Настройки'/>} />
         <Route path="/*" element={<NotFoundPage />} />
