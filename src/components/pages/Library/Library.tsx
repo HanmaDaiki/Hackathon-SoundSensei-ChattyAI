@@ -16,7 +16,7 @@ export const Library: FC = () => {
       <div className={styles.container}>
         {
           allStories.map((story, index) => {
-            return <span>{story.slice(1).reduce((accumulator, currentValue) => accumulator + currentValue.text, '')}</span>
+            return <span key={index}>{story.slice(1).reduce((accumulator, currentValue) => accumulator + currentValue.text, '')}</span>
           })
         }
       </div>

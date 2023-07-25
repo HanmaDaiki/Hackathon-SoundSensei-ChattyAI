@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useEffect, useState } from "react";
 
-import { addUserMessageToCurrentStory, getOpenAiStory } from '../../../store/storySlice';
+import { addUserMessageToCurrentStory, getOpenAiStory, saveCurrentStory } from '../../../store/storySlice';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { apiSpeechFlow } from '../../../utils/ApiSpeechFlow';
 import styles from './Mic.module.scss';
@@ -25,6 +25,7 @@ export const Mic: FC = () => {
     if(transResult.length !== 0) {
       dispatch(getOpenAiStory({ prompt: transResult }));
       dispatch(addUserMessageToCurrentStory(transResult));
+      dispatch(saveCurrentStory());
       setTransResult('');
       setFile(null);
     }

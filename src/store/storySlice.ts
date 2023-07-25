@@ -28,27 +28,50 @@ const storySlice = createSlice({
   name: 'story',
   initialState,
   reducers: {
+    loadData: (state) => {
+      state.allStories = JSON.parse(localStorage.getItem('allStories') || '[]');
+      state.currentStory = JSON.parse(localStorage.getItem('currentStory') || '[{"owner":"bot","text":"Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку"}]');
+    },
+
     addUserMessageToCurrentStory: (state, action) => {
       state.currentStory.push({ owner: 'user', text: action.payload });
     },
 
+    saveCurrentStory: (state) => {
+      localStorage.setItem('currentStory', JSON.stringify(state.currentStory));
+    },
+
+    saveAllStories: (state) => {
+      localStorage.setItem('allStories', JSON.stringify(state.allStories));
+      localStorage.setItem(
+        'currentStory',
+        JSON.stringify([
+          { owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' },
+        ])
+      );
+    },
+
     nextStory: (state) => {
-      if(state.allStories.length === 20) {
+      if (state.allStories.length === 20) {
         state.allStories.shift();
       }
 
-      state.allStories.push([...state.currentStory.filter(story => story.owner === 'bot')]);
-      state.currentStory = [{ owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' }];
-    }
+      state.allStories.push([...state.currentStory.filter((story) => story.owner === 'bot')]);
+      state.currentStory = [
+        { owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' },
+      ];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getOpenAiStory.fulfilled, (state, action) => {
       if (typeof action.payload === 'string') {
         state.currentStory.push({ owner: 'bot', text: action.payload });
+        localStorage.setItem('currentStory', JSON.stringify(state.currentStory));
       }
     });
   },
 });
 
-export const { addUserMessageToCurrentStory, nextStory } = storySlice.actions;
+export const { addUserMessageToCurrentStory, nextStory, saveCurrentStory, saveAllStories, loadData } =
+  storySlice.actions;
 export const storyReducer = storySlice.reducer;
