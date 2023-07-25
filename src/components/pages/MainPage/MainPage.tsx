@@ -1,20 +1,24 @@
-import { FC, useState } from 'react';
-import { useSelector } from 'react-redux';
-import cn from 'classnames';
+import { FC, useState } from "react";
+import { useSelector } from "react-redux";
+import cn from "classnames";
 
-import { RecorderMic } from '../../simple/RecorderMic/RecorderMic';
-import { addUserMessageToCurrentStory, getOpenAiStory } from '../../../store/storySlice';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
-import { StoryState } from '../../../interfaces/StoryState';
-import randomImg from '../../../images/random-image.jpg';
-import styles from './MainPage.module.scss';
-import { Transcribe } from '../../simple/Transcribe/Transcribe';
-import { Chat } from '../../simple/Chat/Chat';
-import { Header } from '../../simple/Header/Header';
-import { Tools } from '../../simple/Tools/Tools';
+import { RecorderMic } from "../../simple/RecorderMic/RecorderMic";
+import {
+  addUserMessageToCurrentStory,
+  getOpenAiStory,
+} from "../../../store/storySlice";
+import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { StoryState } from "../../../interfaces/StoryState";
+import randomImg from "../../../images/random-image.jpg";
+
+import styles from "./MainPage.module.scss";
+import { Transcribe } from "../../simple/Transcribe/Transcribe";
+import { Chat } from "../../simple/Chat/Chat";
+import { Header } from "../../simple/Header/Header";
+import { Tools } from "../../simple/Tools/Tools";
 
 export const MainPage: FC = () => {
-  const [prompt, setPrompt] = useState<string>('');
+  const [prompt, setPrompt] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [isMicHovered, toggleIsMicHovered] = useState<boolean>(false);
 
@@ -24,7 +28,7 @@ export const MainPage: FC = () => {
     e.preventDefault();
     setLoading(true);
     dispatch(addUserMessageToCurrentStory(prompt));
-    setPrompt('');
+    setPrompt("");
 
     await dispatch(getOpenAiStory({ prompt }));
 
@@ -32,8 +36,8 @@ export const MainPage: FC = () => {
   };
 
   const handleMicHover = () => {
-    toggleIsMicHovered(!isMicHovered);
-  }
+    toggleIsMicHovered((cur) => !cur);
+  };
 
   return (
     <div className={styles.main}>
@@ -48,19 +52,31 @@ export const MainPage: FC = () => {
       
       <RecorderMic />
       <Transcribe /> */}
-      <Header from='Сказочник' />
-      <Chat />
-      <form className={cn(styles.form, isMicHovered? styles.formwithhover: null)} onSubmit={handleSubmit}>
-        <input
-          disabled={loading ? true : false}
-          placeholder={loading ? 'Сказочник генерирует сказку...' : 'Какую сказку вы хотите?'}
-          onChange={(elser) => setPrompt(elser.target.value)}
-          value={prompt}
-        />
-        <button type='submit'></button>
-      </form>
+      <Header from="Сказочник" />
+      <div className={styles.chatcontainer}>
+        <Chat />
+        <form
+          className={cn(
+            styles.form,
+            isMicHovered ? styles.formwithhover : null
+          )}
+          onSubmit={handleSubmit}
+        >
+          <input
+            disabled={loading ? true : false}
+            placeholder={
+              loading
+                ? "Сказочник генерирует сказку..."
+                : "Какую сказку вы хотите?"
+            }
+            onChange={(elser) => setPrompt(elser.target.value)}
+            value={prompt}
+          />
+          <button type="submit"></button>
+        </form>
+      </div>
 
-      <Tools handleHover={handleMicHover}/>
+      <Tools handleHover={handleMicHover} />
     </div>
   );
 };

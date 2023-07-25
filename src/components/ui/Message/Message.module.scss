@@ -2,12 +2,14 @@
   display: flex;
   gap: 18px;
   align-items: flex-start;
+  position: relative;
+  align-self: flex-end;
 }
 
 .message {
-  padding: 12px 24px 20px;
+  padding: 20px 24px;
   border-radius: 32px;
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: "SF Pro Display", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -17,21 +19,26 @@
   align-items: center;
   width: 350px;
   margin-bottom: 30px;
-  align-self: center;
-  margin-left: 463px;
-  background-color: #E0E6FF;
-  color: #5E72E1;
+  background-color: #e0e6ff;
+  color: #5e72e1;
 
   &.bot {
-    margin-left: 0;
-    background: #7386EB;
-    color: #F8F8FD;
+    background: #7386eb;
+    color: #f8f8fd;
   }
+}
+
+.botcontainer {
+  align-self: flex-start;
 }
 
 .avatar {
   width: 80px;
   height: 80px;
+  position: absolute;
+  top: 0;
+  left: -98px;
+  z-index: 5;
   background-image: url(../../../images/avatar-bot.png);
   background-position: center;
   background-repeat: no-repeat;

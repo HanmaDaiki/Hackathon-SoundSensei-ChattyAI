@@ -1,13 +1,22 @@
 .header {
   display: flex;
   align-items: center;
-  gap: 376px;
-  font-family: 'Lena';
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.caption {
+  font-family: "Lena";
   font-size: 32px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: normal;
   line-height: 40px; /* 125% */
   letter-spacing: 0.64px;
-  color: #B795FF;
-  margin-top: 60px;
+  color: #b795ff;
+}
+
+.flags {
+  position: absolute;
+  top: 60px;
+  right: 76px;
 }

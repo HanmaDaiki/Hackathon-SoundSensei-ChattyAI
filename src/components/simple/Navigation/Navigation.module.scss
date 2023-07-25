@@ -5,30 +5,40 @@
   padding-right: 16px;
 
   a {
-    padding: 28px 32px;
+    // padding: 28px 32px;
+    height: 97px;
     text-decoration: none;
-    font-family: 'Lena';
+    font-family: "Lena";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     box-sizing: border-box;
-    letter-spacing: 0.48px;
+    letter-spacing: 1.48px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 17px;
+    padding-left: 40px;
 
     &.active {
-      background-color: #EFF2FF;
-      color: #B795FF;
+      background-color: #eff2ff;
+      color: #b795ff;
       border-radius: 0px 32px 32px 0px;
     }
 
     &.link {
-      color: #F8F8FD;
+      color: #f8f8fd;
     }
     &.pending {
-      color: #F8F8FD;
+      color: #f8f8fd;
     }
   }
+}
+
+.iconcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 47px;
+  height: 41px;
 }
