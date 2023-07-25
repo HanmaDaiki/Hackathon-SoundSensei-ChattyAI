@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 import { Chat } from '../../simple/Chat/Chat';
 import { Header } from '../../simple/Header/Header';
 import { Tools } from '../../simple/Tools/Tools';
-import { addUserMessageToCurrentStory, getOpenAiStory } from '../../../store/storySlice';
+import { addUserMessageToCurrentStory, getOpenAiStory, saveCurrentStory } from '../../../store/storySlice';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import styles from './MainPage.module.scss';
 
@@ -18,6 +18,7 @@ export const MainPage: FC = () => {
     e.preventDefault();
     setLoading(true);
     dispatch(addUserMessageToCurrentStory(prompt));
+    dispatch(saveCurrentStory());
     setPrompt('');
 
     await dispatch(getOpenAiStory({ prompt }));

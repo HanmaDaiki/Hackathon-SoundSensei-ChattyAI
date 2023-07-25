@@ -25,7 +25,7 @@ export const Navigation: FC = () => {
         Избраное
       </NavLink>
       <NavLink
-        to='/my-fairy-tales'
+        to='/library'
         className={({ isActive, isPending }) => (isPending ? styles.pending : isActive ? styles.active : styles.link)}
       >
         <img src={star} alt={'Звезда'} width={43} height={41}/>
