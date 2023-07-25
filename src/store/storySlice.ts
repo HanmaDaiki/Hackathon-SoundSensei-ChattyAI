@@ -2,16 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { StoryState } from '../interfaces/StoryState';
 import { Configuration, OpenAIApi } from 'openai';
 
-import { openaiSettings } from '../utils/constants';
-
 const initialState: StoryState = {
   currentStory: [{ owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' }],
   allStories: [],
 };
 
 export const getOpenAiStory = createAsyncThunk('story/getOpenAiStory', async (data: { prompt: string }) => {
-  console.log(process.env.REACT_APP_API_KEY);
-
   try {
     const configuration = new Configuration({
       apiKey: process.env.REACT_APP_API_KEY,

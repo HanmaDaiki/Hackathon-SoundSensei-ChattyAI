@@ -4,4 +4,20 @@
   width: 100%;
   height: 79vh;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #5E72E1;
+    border-radius: 7px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #E0E6FF;
+    border-radius: 7px;
+  }
 }
+
+
