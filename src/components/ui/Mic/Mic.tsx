@@ -75,7 +75,8 @@ export const Mic: FC = () => {
       if(res && res.code === 11499) {
         clearInterval(interval);
         setIsSubmissionOk(false);
-        dispatch(updateStatusApiIsLoading(false));
+        dispatch(addUserMessageToCurrentStory(''));
+        dispatch(getOpenAiStory({ prompt: '' })).finally(() => dispatch(updateStatusApiIsLoading(false)));
       }
     });
   };
