@@ -1,10 +1,31 @@
 .header {
-  font-family: 'Bellota Text', cursive;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 40px; /* 125% */
-  letter-spacing: 0.64px;
-  color: #B795FF;
   margin-top: 60px;
+  display: flex;
+  align-items: center;
+
+  h1 {
+    font-family: 'Bellota Text', cursive;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px; /* 125% */
+    letter-spacing: 0.64px;
+    color: #B795FF;
+    margin: 0;
+  }
+
+  .customSelect {
+    position: absolute;
+    top: 60px;
+    right: 76px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 }

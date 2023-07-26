@@ -7,6 +7,7 @@ import { apiSpeechFlow } from '../../../utils/ApiSpeechFlow';
 import { useSelector } from 'react-redux';
 import { StoryState } from '../../../interfaces/StoryState';
 import styles from './Mic.module.scss';
+import { LanguageState } from '../../../interfaces/LanguageState';
 
 const MicRecorderToMp3 = require('mic-recorder-to-mp3');
 
@@ -20,6 +21,8 @@ export const Mic: FC = () => {
   const [transResult, setTransResult] = useState("");
   const [taskId, setTaskId] = useState("");
   const { statusApiIsLoading } = useSelector((state: { story: StoryState }) => state.story);
+  const { currentLanguage } = useSelector((state: { lang: LanguageState }) => state.lang);
+
 
   const dispatch = useAppDispatch();
 
@@ -90,7 +93,7 @@ export const Mic: FC = () => {
 
   const handleSubmitRecording = async () => {
     if (!file) return;
-    const formData = createFormData("ru", file);  
+    const formData = createFormData(currentLanguage, file);  
     apiSpeechFlow.postTranscription(formData).then((res) => {
       console.log("result: ", res);
       if (res && res.code === 10000) {
