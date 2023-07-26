@@ -6,4 +6,5 @@ export interface Message {
 export interface StoryState {
   currentStory: Message[];
   allStories: Message[][];
+  statusApiIsLoading: boolean;
 }

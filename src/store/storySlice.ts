@@ -5,6 +5,7 @@ import { Configuration, OpenAIApi } from 'openai';
 const initialState: StoryState = {
   currentStory: [{ owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' }],
   allStories: [],
+  statusApiIsLoading: false,
 };
 
 export const getOpenAiStory = createAsyncThunk('story/getOpenAiStory', async (data: { prompt: string }) => {
@@ -16,7 +17,7 @@ export const getOpenAiStory = createAsyncThunk('story/getOpenAiStory', async (da
 
     const result = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: data.prompt }],
+      messages: [{ role: 'user', content: `Расскажи сказку о ${data.prompt}` }],
     });
     return result.data.choices[0].message?.content;
   } catch (err) {
@@ -30,7 +31,10 @@ const storySlice = createSlice({
   reducers: {
     loadData: (state) => {
       state.allStories = JSON.parse(localStorage.getItem('allStories') || '[]');
-      state.currentStory = JSON.parse(localStorage.getItem('currentStory') || '[{"owner":"bot","text":"Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку"}]');
+      state.currentStory = JSON.parse(
+        localStorage.getItem('currentStory') ||
+          '[{"owner":"bot","text":"Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку"}]'
+      );
     },
 
     addUserMessageToCurrentStory: (state, action) => {
@@ -55,11 +59,17 @@ const storySlice = createSlice({
       if (state.allStories.length === 20) {
         state.allStories.shift();
       }
+      
+      if ([...state.currentStory.filter((story) => story.owner === 'bot')].length > 1) {
+        state.allStories.push([...state.currentStory.filter((story) => story.owner === 'bot')]);
+        state.currentStory = [
+          { owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' },
+        ];
+      }
+    },
 
-      state.allStories.push([...state.currentStory.filter((story) => story.owner === 'bot')]);
-      state.currentStory = [
-        { owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' },
-      ];
+    updateStatusApiIsLoading(state, action) {
+      state.statusApiIsLoading = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -72,6 +82,12 @@ const storySlice = createSlice({
   },
 });
 
-export const { addUserMessageToCurrentStory, nextStory, saveCurrentStory, saveAllStories, loadData } =
-  storySlice.actions;
+export const {
+  addUserMessageToCurrentStory,
+  nextStory,
+  saveCurrentStory,
+  saveAllStories,
+  loadData,
+  updateStatusApiIsLoading,
+} = storySlice.actions;
 export const storyReducer = storySlice.reducer;
