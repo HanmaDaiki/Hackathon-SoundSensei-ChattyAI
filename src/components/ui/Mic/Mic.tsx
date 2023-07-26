@@ -69,11 +69,13 @@ export const Mic: FC = () => {
       if(res && res.code === 11405) {
         clearInterval(interval);
         setIsSubmissionOk(false);
+        dispatch(updateStatusApiIsLoading(false));
       }
 
       if(res && res.code === 11499) {
         clearInterval(interval);
         setIsSubmissionOk(false);
+        dispatch(updateStatusApiIsLoading(false));
       }
     });
   };

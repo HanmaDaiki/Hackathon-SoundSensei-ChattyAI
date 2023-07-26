@@ -59,11 +59,13 @@ const storySlice = createSlice({
       if (state.allStories.length === 20) {
         state.allStories.shift();
       }
-
-      state.allStories.push([...state.currentStory.filter((story) => story.owner === 'bot')]);
-      state.currentStory = [
-        { owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' },
-      ];
+      
+      if ([...state.currentStory.filter((story) => story.owner === 'bot')].length > 1) {
+        state.allStories.push([...state.currentStory.filter((story) => story.owner === 'bot')]);
+        state.currentStory = [
+          { owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' },
+        ];
+      }
     },
 
     updateStatusApiIsLoading(state, action) {
