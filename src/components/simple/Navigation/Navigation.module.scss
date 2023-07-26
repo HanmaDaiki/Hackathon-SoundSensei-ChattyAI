@@ -1,6 +1,7 @@
 .navigation {
   display: flex;
   flex-direction: column;
+  gap: 20px;
   width: 349px;
   padding-right: 16px;
 
@@ -17,12 +18,13 @@
     letter-spacing: 1.48px;
     display: flex;
     align-items: center;
-    gap: 17px;
-    padding-left: 40px;
+    gap: 11px;
+    padding-left: 45px;
 
     &.active {
       background-color: #eff2ff;
-      color: #b795ff;
+      // color: #b795ff;
+
       border-radius: 0px 32px 32px 0px;
     }
 
@@ -41,4 +43,14 @@
   justify-content: flex-start;
   width: 47px;
   height: 41px;
+}
+
+.activecaption {
+  background: var(
+    --general-gradient,
+    linear-gradient(216deg, #b795ff 19.75%, #5e72e1 66.62%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

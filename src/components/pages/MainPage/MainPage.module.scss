@@ -16,7 +16,7 @@
 // }
 
 .form {
-  margin: 32px 0 32px 135px;
+  margin: 78px 0 -2px 135px;
   padding: 16px 20px;
   border: 1px solid rgba(198, 138, 227, 0.5);
   border-radius: 32px;
@@ -25,7 +25,7 @@
   justify-content: space-between;
   transition: width 0.3s ease-in;
   // min-width: 630px;
-  width: 70%;
+  width: 628px;
 
   & button {
     background-color: transparent;
@@ -54,9 +54,13 @@
     &::placeholder {
       color: #5e72e1;
     }
+
+    & input:focus {
+      color: #423494;
+    }
   }
 }
 
 .formwithhover {
-  width: 440px;
+  width: 439px;
 }

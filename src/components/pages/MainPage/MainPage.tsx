@@ -61,6 +61,7 @@ export const MainPage: FC = () => {
       >
         <input
           disabled={loading ? true : false}
+          tabIndex={1}
           placeholder={
             loading
               ? "Сказочник генерирует сказку..."

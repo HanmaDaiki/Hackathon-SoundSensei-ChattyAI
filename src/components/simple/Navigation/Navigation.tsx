@@ -3,9 +3,9 @@ import { NavLink } from "react-router-dom";
 
 import magicBall from "../../../images/magic-ball.png";
 import heart from "../../../images/heart.png";
-// import star from '../../../images/star.png';
 import book from "../../../images/book.png";
 import styles from "./Navigation.module.scss";
+import cn from "classnames";
 
 export const Navigation: FC = () => {
   return (

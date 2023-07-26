@@ -12,11 +12,18 @@
   font-weight: normal;
   line-height: 40px; /* 125% */
   letter-spacing: 0.64px;
-  color: #b795ff;
+  // color: #b795ff;
+  background: var(
+    --general-gradient,
+    linear-gradient(216deg, #b795ff 19.75%, #5e72e1 66.62%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .flags {
   position: absolute;
   top: 60px;
-  right: 76px;
+  right: 75px;
 }
