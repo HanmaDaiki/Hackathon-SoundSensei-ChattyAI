@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import { useEffect, useState } from "react";
 
-import { addUserMessageToCurrentStory, getOpenAiStory, saveCurrentStory } from '../../../store/storySlice';
+import { addUserMessageToCurrentStory, getOpenAiStory, saveCurrentStory, updateStatusApiIsLoading } from '../../../store/storySlice';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { apiSpeechFlow } from '../../../utils/ApiSpeechFlow';
+import { useSelector } from 'react-redux';
+import { StoryState } from '../../../interfaces/StoryState';
 import styles from './Mic.module.scss';
-
 
 const MicRecorderToMp3 = require('mic-recorder-to-mp3');
 
@@ -18,12 +19,13 @@ export const Mic: FC = () => {
   const [isSubmissionOk, setIsSubmissionOk] = useState(false);
   const [transResult, setTransResult] = useState("");
   const [taskId, setTaskId] = useState("");
+  const { statusApiIsLoading } = useSelector((state: { story: StoryState }) => state.story);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if(transResult.length !== 0) {
-      dispatch(getOpenAiStory({ prompt: transResult }));
+      dispatch(getOpenAiStory({ prompt: transResult })).finally(() => dispatch(updateStatusApiIsLoading(false)));
       dispatch(addUserMessageToCurrentStory(transResult));
       dispatch(saveCurrentStory());
       setTransResult('');
@@ -45,6 +47,7 @@ export const Mic: FC = () => {
   }
 
   const stopRecording = () => {
+    dispatch(updateStatusApiIsLoading(true));
     Mp3Recorder.stop()
       .getMp3()
       .then(([blob]: any) => {
@@ -99,7 +102,7 @@ export const Mic: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
-  return <button className={styles.mic} onMouseDown={() => startRecording()} onMouseUp={async () => { 
+  return <>{statusApiIsLoading ? <div className={styles.mic_loader}></div> : <button className={styles.mic} onMouseDown={() => startRecording()} onMouseUp={async () => { 
     await stopRecording();
-  }} />;
+  }} />}</>;
 };

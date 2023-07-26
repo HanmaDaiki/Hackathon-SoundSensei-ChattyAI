@@ -5,6 +5,7 @@ import { Configuration, OpenAIApi } from 'openai';
 const initialState: StoryState = {
   currentStory: [{ owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' }],
   allStories: [],
+  statusApiIsLoading: false,
 };
 
 export const getOpenAiStory = createAsyncThunk('story/getOpenAiStory', async (data: { prompt: string }) => {
@@ -30,7 +31,10 @@ const storySlice = createSlice({
   reducers: {
     loadData: (state) => {
       state.allStories = JSON.parse(localStorage.getItem('allStories') || '[]');
-      state.currentStory = JSON.parse(localStorage.getItem('currentStory') || '[{"owner":"bot","text":"Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку"}]');
+      state.currentStory = JSON.parse(
+        localStorage.getItem('currentStory') ||
+          '[{"owner":"bot","text":"Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку"}]'
+      );
     },
 
     addUserMessageToCurrentStory: (state, action) => {
@@ -61,6 +65,10 @@ const storySlice = createSlice({
         { owner: 'bot', text: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку' },
       ];
     },
+
+    updateStatusApiIsLoading(state, action) {
+      state.statusApiIsLoading = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getOpenAiStory.fulfilled, (state, action) => {
@@ -72,6 +80,12 @@ const storySlice = createSlice({
   },
 });
 
-export const { addUserMessageToCurrentStory, nextStory, saveCurrentStory, saveAllStories, loadData } =
-  storySlice.actions;
+export const {
+  addUserMessageToCurrentStory,
+  nextStory,
+  saveCurrentStory,
+  saveAllStories,
+  loadData,
+  updateStatusApiIsLoading,
+} = storySlice.actions;
 export const storyReducer = storySlice.reducer;

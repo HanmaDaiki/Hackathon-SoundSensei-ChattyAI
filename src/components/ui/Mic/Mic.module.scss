@@ -23,6 +23,11 @@
   background-color: transparent;
   cursor: pointer;
 
+  &:disabled {
+    animation: none;
+    background-image: url(../../../images/mic.png);
+  }
+
   &:active {
     background-image: url(../../../images/mic1.png);
     animation-name: animate-mic;
@@ -31,4 +36,15 @@
     animation-iteration-count: infinite;
     animation-timing-function: steps(1, end);
   }
+}
+
+.mic_loader {
+  background-image: url(../../../images/mic.png);
+  width: 178px;
+  height: 160px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }

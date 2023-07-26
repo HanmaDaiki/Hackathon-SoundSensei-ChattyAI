@@ -3,27 +3,28 @@ import { FC, useState } from 'react';
 import { Chat } from '../../simple/Chat/Chat';
 import { Header } from '../../simple/Header/Header';
 import { Tools } from '../../simple/Tools/Tools';
-import { addUserMessageToCurrentStory, getOpenAiStory, saveCurrentStory } from '../../../store/storySlice';
+import { addUserMessageToCurrentStory, getOpenAiStory, saveCurrentStory, updateStatusApiIsLoading } from '../../../store/storySlice';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import styles from './MainPage.module.scss';
+import { StoryState } from '../../../interfaces/StoryState';
+import { useSelector } from 'react-redux';
 
 
 export const MainPage: FC = () => {
   const [prompt, setPrompt] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
-
+  const { statusApiIsLoading } = useSelector((state: { story: StoryState }) => state.story);
   const dispatch = useAppDispatch();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
+    dispatch(updateStatusApiIsLoading(true));
     dispatch(addUserMessageToCurrentStory(prompt));
     dispatch(saveCurrentStory());
     setPrompt('');
 
     await dispatch(getOpenAiStory({ prompt }));
 
-    setLoading(false);
+    dispatch(updateStatusApiIsLoading(false));
   };
 
   return (
@@ -32,12 +33,12 @@ export const MainPage: FC = () => {
       <Chat />
       <form className={styles.form} onSubmit={handleSubmit}>
         <input
-          disabled={loading ? true : false}
-          placeholder={loading ? 'Сказочник генерирует сказку...' : 'Какую сказку вы хотите?'}
+          disabled={statusApiIsLoading}
+          placeholder={statusApiIsLoading ? 'Сказочник генерирует сказку...' : 'Какую сказку вы хотите?'}
           onChange={(elser) => setPrompt(elser.target.value)}
           value={prompt}
         />
-        <button type='submit'></button>
+        <button disabled={statusApiIsLoading} type='submit'></button>
       </form>
       <Tools />
     </div>
