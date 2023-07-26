@@ -17,7 +17,7 @@ export const getOpenAiStory = createAsyncThunk('story/getOpenAiStory', async (da
 
     const result = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: data.prompt }],
+      messages: [{ role: 'user', content: `Расскажи сказку о ${data.prompt}` }],
     });
     return result.data.choices[0].message?.content;
   } catch (err) {
