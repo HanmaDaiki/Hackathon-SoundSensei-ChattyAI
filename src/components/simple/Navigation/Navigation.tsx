@@ -22,7 +22,9 @@ export const Navigation: FC = () => {
         style={{ pointerEvents: statusApiIsLoading ? 'none' : 'auto' }}
         className={({ isActive, isPending }) => (isPending ? styles.pending : isActive ? styles.active : styles.link)}
       > 
-        <img src={magicBall} alt={'Волшебный шар'} width={34} height={41}/>
+        <div className={styles.iconcontainer}>
+          <img src={magicBall} alt={'Волшебный шар'} width={34} height={41}/>
+        </div>
         {language[currentLanguage].chat}
       </NavLink>
       <NavLink

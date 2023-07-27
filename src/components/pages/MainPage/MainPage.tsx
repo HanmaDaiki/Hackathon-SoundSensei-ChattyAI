@@ -1,13 +1,13 @@
 import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import cn from "classnames";
-import { useSelector } from 'react-redux';
 
 import {
   addUserMessageToCurrentStory,
   getOpenAiStory,
   updateStatusApiIsLoading,
 } from "../../../store/storySlice";
+import { LanguageState } from '../../../interfaces/LanguageState';
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { StoryState } from "../../../interfaces/StoryState";
 import { Chat } from "../../simple/Chat/Chat";
@@ -18,9 +18,9 @@ import styles from "./MainPage.module.scss";
 
 export const MainPage: FC = () => {
   const [prompt, setPrompt] = useState<string>("");
+  const [isMicHovered, toggleIsMicHovered] = useState<boolean>(false);
   const { statusApiIsLoading } = useSelector((state: { story: StoryState }) => state.story);
   const { language, currentLanguage } = useSelector((state: {lang: LanguageState} ) => state.lang);
-  const [isMicHovered, toggleIsMicHovered] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -49,7 +49,7 @@ export const MainPage: FC = () => {
       >
         <input
           disabled={statusApiIsLoading}
-          placeholder={statusApiIsLoading ? 'Сказочник генерирует сказку...' : 'Какую сказку вы хотите?'}
+          placeholder={statusApiIsLoading ? language[currentLanguage].inputPlaceholderAwaiting : language[currentLanguage].inputPlaceholder}
           onChange={(elser) => setPrompt(elser.target.value)}
           value={prompt}
         />
