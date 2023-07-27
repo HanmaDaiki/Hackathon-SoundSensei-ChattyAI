@@ -9,11 +9,11 @@ export interface lang {
 };
 
 export interface LanguageState {
-    currentLanguage: 'ru' | 'en' | 'cn' | 'ae' | 'fr';
+    currentLanguage: 'ru' | 'en' | 'zh' | 'ae' | 'fr';
     language: {
       ru: lang;
       en: lang;
-      cn: lang;
+      zh: lang;
       ae: lang;
       fr: lang;
     };

@@ -22,7 +22,7 @@ const initialState: LanguageState = {
       inputPlaceholder: 'Какую сказку ты хочешь?',
       inputPlaceholderAwaiting: 'Сейчас что-нибудь придумаю ...'
     },
-    cn: {
+    zh: {
       storyteller: '说故事的人',
       chat: '聊天 ',
       library: '图书馆',

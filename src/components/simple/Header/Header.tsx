@@ -64,8 +64,8 @@ export const Header: FC<IProps> = (props) => {
               className='option'
               onClick={() => {
                 handleOptionClick(<img src={flagCn} alt='flag' />);
-                dispatch(setLanguage('cn'));
-                dispatch(switchHelloMessage(language['cn'].helloMessage));
+                dispatch(setLanguage('zh'));
+                dispatch(switchHelloMessage(language['zh'].helloMessage));
               }}
             >
               <img src={flagCn} alt='flag' />
