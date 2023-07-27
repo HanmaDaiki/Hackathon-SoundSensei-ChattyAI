@@ -1,3 +1,12 @@
+.overlaycontainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
 .hintoverlay {
   position: absolute;
   bottom: 33px;
@@ -20,6 +29,7 @@
   font-weight: 400;
   line-height: 23px; /* 127.778% */
   letter-spacing: 0.18px;
+  z-index: 4;
 }
 
 .newtalehint {

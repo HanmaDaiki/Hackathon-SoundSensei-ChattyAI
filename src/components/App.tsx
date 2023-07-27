@@ -19,7 +19,7 @@ const Mp3Recorder = new MicRecorderTemp({
 
 export function App() {
   const dispatch = useAppDispatch();
-  const [isHintOverlayOpened, setIsHintOverlayOpened] = useState(false);
+  const [isHintOverlayOpened, setIsHintOverlayOpened] = useState(true);
   const navigate = useNavigate();
 
   const handleHintsOverlay = () => {
@@ -49,7 +49,9 @@ export function App() {
         <Route path="/library" element={<Library />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
-      {isHintOverlayOpened && <HintOverlay />}
+      {isHintOverlayOpened && (
+        <HintOverlay handleHintsOverlay={handleHintsOverlay} />
+      )}
     </div>
   );
 }
