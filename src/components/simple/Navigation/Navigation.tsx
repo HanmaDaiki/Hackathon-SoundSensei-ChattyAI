@@ -28,24 +28,20 @@ export const Navigation: FC = () => {
         style={{ pointerEvents: statusApiIsLoading ? 'none' : 'auto' }}
         className={({ isActive, isPending }) => (isPending ? styles.pending : isActive ? styles.active : styles.link)}
       >
-        <img src={heart} alt={'Сердечко'} width={32} height={32}/>
-        Избраное
+        <div className={styles.iconcontainer}>
+          <img src={heart} alt={"Сердечко"} width={37} height={37} />
+        </div>
+        Избранное
       </NavLink>
       <NavLink
         to='/library'
         style={{ pointerEvents: statusApiIsLoading ? 'none' : 'auto' }}
         className={({ isActive, isPending }) => (isPending ? styles.pending : isActive ? styles.active : styles.link)}
       >
-        <img src={star} alt={'Звезда'} width={43} height={41}/>
-        Мои сказки
-      </NavLink>
-      <NavLink
-        to='/settings'
-        style={{ pointerEvents: statusApiIsLoading ? 'none' : 'auto' }}
-        className={({ isActive, isPending }) => (isPending ? styles.pending : isActive ? styles.active : styles.link)}
-      >
-        <img src={book} alt={'Кинга'} width={47} height={30}/>
-        Настройки
+        <div className={styles.iconcontainer}>
+          <img src={book} alt={"Книга"} width={47} height={30} />
+        </div>
+        Библиотека
       </NavLink>
     </nav>
   );

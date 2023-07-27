@@ -1,8 +1,13 @@
 .chat {
-  padding: 48px 0 0 37px;
+  padding: 40px 37px 0;
+  max-width: 74%;
+
   box-sizing: border-box;
   width: 100%;
-  height: 79vh;
+  display: flex;
+  flex-direction: column;
+  // gap: 24px;
+  height: 70vh;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
@@ -10,14 +15,12 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #5E72E1;
+    background: #5e72e1;
     border-radius: 7px;
   }
 
   &::-webkit-scrollbar-track {
-    background: #E0E6FF;
+    background: #e0e6ff;
     border-radius: 7px;
   }
 }
-
-

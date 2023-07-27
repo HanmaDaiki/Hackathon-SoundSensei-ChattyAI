@@ -1,34 +1,42 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  // justify-content: right;
+  // align-items: center;
   width: 100%;
-  background-color: #F8F8FD;
+  background-color: #f8f8fd;
   box-sizing: border-box;
   padding: 0 0 30px 0;
   position: relative;
 }
 
+// .chatcontainer {
+//   margin-left: 135px;
+//   max-width: 670px;
+// }
+
 .form {
+  margin: 78px 0 -2px 135px;
   padding: 16px 20px;
-  border: 1px solid rgba(198, 138, 227, 0.50);
+  border: 1px solid rgba(198, 138, 227, 0.5);
   border-radius: 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 670px;
+  transition: width 0.3s ease-in;
+  // min-width: 630px;
+  width: 628px;
 
   & button {
     background-color: transparent;
-    background-image: url(../../../images/magic-ball.png);
+    background-image: url(../../../images/magic-wand.png);
     border: none;
     box-sizing: border-box;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    width: 16px;
-    height: 23px;
+    width: 27px;
+    height: 27px;
   }
 
   & input {
@@ -41,10 +49,18 @@
     font-weight: 400;
     line-height: 23px; /* 127.778% */
     letter-spacing: 0.18px;
-    color: #5E72E1;
+    color: #5e72e1;
 
     &::placeholder {
-      color: #5E72E1;
+      color: #5e72e1;
+    }
+
+    & input:focus {
+      color: #423494;
     }
   }
+}
+
+.formwithhover {
+  width: 439px;
 }
