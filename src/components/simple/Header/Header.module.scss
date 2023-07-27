@@ -1,13 +1,8 @@
 .header {
-  font-family: 'Bellota Text', cursive;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 40px; /* 125% */
-  letter-spacing: 0.64px;
-  color: #B795FF;
   margin-top: 60px;
-
+  width: 100%;
+  display: flex;
+  justify-content: center;
   .customSelect {
     position: absolute;
     top: 60px;
@@ -38,10 +33,4 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.flags {
-  position: absolute;
-  top: 60px;
-  right: 75px;
-}
+} 

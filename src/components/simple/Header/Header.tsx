@@ -1,29 +1,35 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from "react";
 
-import { setLanguage } from '../../../store/languageSlice';
-import { switchHelloMessage } from '../../../store/storySlice';
-import { useSelector } from 'react-redux';
-import { LanguageState } from '../../../interfaces/LanguageState';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
-import flagRu from '../../../images/ru-flag.png';
-import flagEu from '../../../images/eu-flag.png';
-import flagCn from '../../../images/cn-flag.png';
-import flagAe from '../../../images/ae-flag.png';
-import flagFr from '../../../images/fr-flag.png';
-import styles from './Header.module.scss';
-
+import { setLanguage } from "../../../store/languageSlice";
+import { switchHelloMessage } from "../../../store/storySlice";
+import { useSelector } from "react-redux";
+import { LanguageState } from "../../../interfaces/LanguageState";
+import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import flagru from "../../../images/ru-flag.png";
+import flagen from "../../../images/en-flag.png";
+import flagzh from "../../../images/zh-flag.png";
+import flagfr from "../../../images/fr-flag.png";
+import styles from "./Header.module.scss";
 
 interface IProps {
   from: string;
 }
 export const Header: FC<IProps> = (props) => {
   const { from } = props;
-  const { language } = useSelector((state: { lang: LanguageState }) => state.lang);
+  const { language, currentLanguage } = useSelector(
+    (state: { lang: LanguageState }) => state.lang
+  );
 
   const dispatch = useAppDispatch();
-
-  const [selectedOption, setSelectedOption] = useState<React.ReactNode>(<img src={flagRu} alt='flag' />);
+  
+  const [selectedOption, setSelectedOption] = useState<React.ReactNode>(
+    <img src={require(`../../../images/${currentLanguage}-flag.png`)} alt="flag" />
+  );
   const [isOpen, setIsOpen] = useState(false);
+  
+  useEffect(() => {
+    setSelectedOption(<img src={require(`../../../images/${currentLanguage}-flag.png`)} alt="flag" />);
+  }, [currentLanguage])
 
   const handleOptionClick = (option: React.ReactNode) => {
     setSelectedOption(option);
@@ -32,63 +38,57 @@ export const Header: FC<IProps> = (props) => {
 
   return (
     <header className={styles.header}>
-      <h1>{from}</h1>
+      <span className={styles.caption}>{from}</span>
 
       <div className={styles.customSelect}>
-        <div className='selected-option' onClick={() => setIsOpen(!isOpen)}>
+        <div className="selected-option" onClick={() => setIsOpen(!isOpen)}>
           {selectedOption}
         </div>
         {isOpen && (
           <div className={styles.options}>
             <div
-              className='option'
+              className="option"
               onClick={() => {
-                handleOptionClick(<img src={flagRu} alt='flag' />);
-                dispatch(setLanguage('ru'));
-                dispatch(switchHelloMessage(language['ru'].helloMessage));
+                handleOptionClick(<img src={flagru} alt="flag" />);
+                dispatch(setLanguage("ru"));
+                dispatch(switchHelloMessage(language["ru"].helloMessage));
+                localStorage.setItem("lang", "ru");
               }}
             >
-              <img src={flagRu} alt='flag' />
+              <img src={flagru} alt="flag" />
             </div>
             <div
-              className='option'
+              className="option"
               onClick={() => {
-                handleOptionClick(<img src={flagEu} alt='flag' />);
-                dispatch(setLanguage('en'));
-                dispatch(switchHelloMessage(language['en'].helloMessage));
+                handleOptionClick(<img src={flagen} alt="flag" />);
+                dispatch(setLanguage("en"));
+                dispatch(switchHelloMessage(language["en"].helloMessage));
+                localStorage.setItem("lang", "en");
               }}
             >
-              <img src={flagEu} alt='flag' />
+              <img src={flagen} alt="flag" />
             </div>
             <div
-              className='option'
+              className="option"
               onClick={() => {
-                handleOptionClick(<img src={flagCn} alt='flag' />);
-                dispatch(setLanguage('zh'));
-                dispatch(switchHelloMessage(language['zh'].helloMessage));
+                handleOptionClick(<img src={flagzh} alt="flag" />);
+                dispatch(setLanguage("zh"));
+                dispatch(switchHelloMessage(language["zh"].helloMessage));
+                localStorage.setItem("lang", "zh");
               }}
             >
-              <img src={flagCn} alt='flag' />
+              <img src={flagzh} alt="flag" />
             </div>
             <div
-              className='option'
+              className="option"
               onClick={() => {
-                handleOptionClick(<img src={flagAe} alt='flag' />);
-                dispatch(setLanguage('ae'));
-                dispatch(switchHelloMessage(language['ae'].helloMessage));
+                handleOptionClick(<img src={flagfr} alt="flag" />);
+                dispatch(setLanguage("fr"));
+                dispatch(switchHelloMessage(language["fr"].helloMessage));
+                localStorage.setItem("lang", "fr");
               }}
             >
-              <img src={flagAe} alt='flag' />
-            </div>
-            <div
-              className='option'
-              onClick={() => {
-                handleOptionClick(<img src={flagFr} alt='flag' />);
-                dispatch(setLanguage('fr'));
-                dispatch(switchHelloMessage(language['fr'].helloMessage));
-              }}
-            >
-              <img src={flagFr} alt='flag' />
+              <img src={flagfr} alt="flag" />
             </div>
           </div>
         )}

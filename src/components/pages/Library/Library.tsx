@@ -13,7 +13,7 @@ export const Library: FC = () => {
 
 
   return(
-    <div>
+    <div className={styles.library}>
       <Header from={language[currentLanguage].library} />
 
       <div className={styles.container}>

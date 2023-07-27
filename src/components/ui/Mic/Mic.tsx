@@ -20,10 +20,7 @@ const Mp3Recorder = new MicRecorderToMp3({
   bitRate: 128,
 });
 
-type IProps = {
-  handleHover: () => void;
-};
-export const Mic: FC<IProps> = ({ handleHover }) => {
+export const Mic: FC = () => {
   const [file, setFile] = useState<File | null>();
   const [isSubmissionOk, setIsSubmissionOk] = useState(false);
   const [transResult, setTransResult] = useState("");
@@ -132,8 +129,6 @@ export const Mic: FC<IProps> = ({ handleHover }) => {
       ) : (
         <button
           className={styles.mic}
-          onMouseEnter={handleHover}
-          onMouseLeave={handleHover}
           onMouseDown={() => startRecording()}
           onMouseUp={async () => {
             await stopRecording();

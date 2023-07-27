@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import { useSelector } from "react-redux";
-import cn from "classnames";
 
 import {
   addUserMessageToCurrentStory,
@@ -18,7 +17,6 @@ import styles from "./MainPage.module.scss";
 
 export const MainPage: FC = () => {
   const [prompt, setPrompt] = useState<string>("");
-  const [isMicHovered, toggleIsMicHovered] = useState<boolean>(false);
   const { statusApiIsLoading } = useSelector((state: { story: StoryState }) => state.story);
   const { language, currentLanguage } = useSelector((state: {lang: LanguageState} ) => state.lang);
   const dispatch = useAppDispatch();
@@ -34,17 +32,13 @@ export const MainPage: FC = () => {
     dispatch(updateStatusApiIsLoading(false));
   };
 
-  const handleMicHover = () => {
-    toggleIsMicHovered((cur) => !cur);
-  };
-
   return (
     <div className={styles.main}>
-      <Header from='Сказочник' />
+      <Header from={language[currentLanguage].storyteller} />
       <Chat />
 
       <form
-        className={cn(styles.form, isMicHovered ? styles.formwithhover : null)}
+        className={styles.form}
         onSubmit={handleSubmit}
       >
         <input
@@ -55,7 +49,7 @@ export const MainPage: FC = () => {
         />
         <button disabled={statusApiIsLoading} type="submit"></button>
       </form>
-      <Tools handleHover={handleMicHover} />
+      <Tools />
     </div>
   );
 };
