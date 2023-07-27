@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react";
 
 import { setLanguage } from "../../../store/languageSlice";
-import { switchHelloMessage } from "../../../store/storySlice";
 import { useSelector } from "react-redux";
 import { LanguageState } from "../../../interfaces/LanguageState";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
@@ -16,7 +15,7 @@ interface IProps {
 }
 export const Header: FC<IProps> = (props) => {
   const { from } = props;
-  const { language, currentLanguage } = useSelector(
+  const { currentLanguage } = useSelector(
     (state: { lang: LanguageState }) => state.lang
   );
 
@@ -51,7 +50,6 @@ export const Header: FC<IProps> = (props) => {
               onClick={() => {
                 handleOptionClick(<img src={flagru} alt="flag" />);
                 dispatch(setLanguage("ru"));
-                dispatch(switchHelloMessage(language["ru"].helloMessage));
                 localStorage.setItem("lang", "ru");
               }}
             >
@@ -62,7 +60,6 @@ export const Header: FC<IProps> = (props) => {
               onClick={() => {
                 handleOptionClick(<img src={flagen} alt="flag" />);
                 dispatch(setLanguage("en"));
-                dispatch(switchHelloMessage(language["en"].helloMessage));
                 localStorage.setItem("lang", "en");
               }}
             >
@@ -73,7 +70,6 @@ export const Header: FC<IProps> = (props) => {
               onClick={() => {
                 handleOptionClick(<img src={flagzh} alt="flag" />);
                 dispatch(setLanguage("zh"));
-                dispatch(switchHelloMessage(language["zh"].helloMessage));
                 localStorage.setItem("lang", "zh");
               }}
             >
@@ -84,7 +80,6 @@ export const Header: FC<IProps> = (props) => {
               onClick={() => {
                 handleOptionClick(<img src={flagfr} alt="flag" />);
                 dispatch(setLanguage("fr"));
-                dispatch(switchHelloMessage(language["fr"].helloMessage));
                 localStorage.setItem("lang", "fr");
               }}
             >

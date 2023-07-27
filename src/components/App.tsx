@@ -23,6 +23,11 @@ export function App() {
 
   useEffect(() => {
     dispatch(loadData());
+    const saveLang = localStorage.getItem('lang');
+    if(!saveLang) {
+      localStorage.setItem('lang', 'ru')
+    }
+
     dispatch(setLanguage(localStorage.getItem('lang')));
     Mp3Recorder.start();
     Mp3Recorder.stop();

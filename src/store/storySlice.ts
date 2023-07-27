@@ -4,7 +4,6 @@ import { Configuration, OpenAIApi } from 'openai';
 
 const initialState: StoryState = {
   currentStory: [],
-  helloMessage: 'Привет! Меня зовут Сказочник. Могу придумать и рассказать сказку',
   allStories: [],
   statusApiIsLoading: false,
 };
@@ -35,14 +34,6 @@ const storySlice = createSlice({
       state.currentStory = JSON.parse(
         localStorage.getItem('currentStory') || `[]`
       );
-    },
-
-    loadHelloMessage: (state) => {
-      state.currentStory[0].text = state.helloMessage;
-    },
-
-    switchHelloMessage: (state, action) => {
-      state.helloMessage = action.payload;
     },
 
     addUserMessageToCurrentStory: (state, action) => {
@@ -93,6 +84,5 @@ export const {
   saveAllStories,
   loadData,
   updateStatusApiIsLoading,
-  switchHelloMessage
 } = storySlice.actions;
 export const storyReducer = storySlice.reducer;
