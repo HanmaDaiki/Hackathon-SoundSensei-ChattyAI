@@ -19,20 +19,19 @@ import { Tools } from "../../simple/Tools/Tools";
 
 export const MainPage: FC = () => {
   const [prompt, setPrompt] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const { statusApiIsLoading } = useSelector((state: { story: StoryState }) => state.story);
   const [isMicHovered, toggleIsMicHovered] = useState<boolean>(false);
-
   const dispatch = useAppDispatch();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
+    dispatch(updateStatusApiIsLoading(true));
     dispatch(addUserMessageToCurrentStory(prompt));
-    setPrompt("");
+    setPrompt('');
 
     await dispatch(getOpenAiStory({ prompt }));
 
-    setLoading(false);
+    dispatch(updateStatusApiIsLoading(false));
   };
 
   const handleMicHover = () => {
@@ -52,7 +51,7 @@ export const MainPage: FC = () => {
       
       <RecorderMic />
       <Transcribe /> */}
-      <Header from="Сказочник" />
+      <Header from='Сказочник' />
       <Chat />
 
       <form
@@ -60,19 +59,18 @@ export const MainPage: FC = () => {
         onSubmit={handleSubmit}
       >
         <input
-          disabled={loading ? true : false}
+          disabled={statusApiIsLoading}
           tabIndex={1}
           placeholder={
-            loading
+            statusApiIsLoading
               ? "Сказочник генерирует сказку..."
               : "Какую сказку вы хотите?"
           }
           onChange={(elser) => setPrompt(elser.target.value)}
           value={prompt}
         />
-        <button type="submit"></button>
+        <button disabled={statusApiIsLoading} type="submit"></button>
       </form>
-
       <Tools handleHover={handleMicHover} />
     </div>
   );
