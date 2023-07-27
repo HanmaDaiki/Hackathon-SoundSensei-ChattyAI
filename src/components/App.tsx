@@ -9,6 +9,12 @@ import { MainPage } from './pages/MainPage/MainPage';
 import { SideBar } from './simple/SideBar/SideBar';
 import { Header } from './simple/Header/Header';
 import styles from './App.module.scss';
+import { setTimeout } from 'timers/promises';
+
+const MicRecorderTemp = require('mic-recorder-to-mp3');
+const Mp3Recorder = new MicRecorderTemp({
+  bitRate: 128
+});
 
 
 export function App() {
@@ -16,6 +22,14 @@ export function App() {
 
   useEffect(() => {
     dispatch(loadData());
+
+    Mp3Recorder.start();
+
+    Mp3Recorder.stop();
+
+
+
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

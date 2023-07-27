@@ -30,7 +30,9 @@ export const Navigation: FC = () => {
         style={{ pointerEvents: statusApiIsLoading ? 'none' : 'auto' }}
         className={({ isActive, isPending }) => (isPending ? styles.pending : isActive ? styles.active : styles.link)}
       >
-        <img src={heart} alt={'Сердечко'} width={32} height={32}/>
+        <div className={styles.iconcontainer}>
+          <img src={heart} alt={"Сердечко"} width={37} height={37} />
+        </div>
         {language[currentLanguage].favorites}
       </NavLink>
       <NavLink
@@ -38,7 +40,9 @@ export const Navigation: FC = () => {
         style={{ pointerEvents: statusApiIsLoading ? 'none' : 'auto' }}
         className={({ isActive, isPending }) => (isPending ? styles.pending : isActive ? styles.active : styles.link)}
       >
-        <img src={book} alt={'Книга'} width={47} height={30}/>
+        <div className={styles.iconcontainer}>
+          <img src={book} alt={"Книга"} width={47} height={30} />
+        </div>
         {language[currentLanguage].library}
       </NavLink>
     </nav>

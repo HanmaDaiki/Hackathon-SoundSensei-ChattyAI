@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 import { setLanguage } from '../../../store/languageSlice';
 import { switchHelloMessage } from '../../../store/storySlice';
