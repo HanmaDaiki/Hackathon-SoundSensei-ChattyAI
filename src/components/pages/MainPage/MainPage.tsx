@@ -26,9 +26,11 @@ export const MainPage: FC = () => {
     dispatch(updateStatusApiIsLoading(true));
     dispatch(addUserMessageToCurrentStory(prompt));
     setPrompt('');
-
-    await dispatch(getOpenAiStory({ prompt, keyWords: language[currentLanguage].keyWords }));
-
+    if (prompt.length > 0){
+      await dispatch(getOpenAiStory({ prompt, keyWords: language[currentLanguage].keyWords }));
+    } else {
+      await dispatch(getOpenAiStory({ prompt, keyWords: language[currentLanguage].miniStory }));
+    }
     dispatch(updateStatusApiIsLoading(false));
   };
 

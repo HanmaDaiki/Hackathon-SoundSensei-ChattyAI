@@ -34,13 +34,22 @@ export const Mic: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (transResult.length !== 0) {
+    if (transResult.length !== 0 && transResult !== 'ClearString') {
       dispatch(getOpenAiStory({ prompt: transResult, keyWords: language[currentLanguage].keyWords })).finally(() =>
         dispatch(updateStatusApiIsLoading(false))
       );
       dispatch(addUserMessageToCurrentStory(transResult));
       dispatch(saveCurrentStory());
       setTransResult("");
+      setFile(null);
+    } 
+    if (transResult === 'ClearString') {
+      dispatch(getOpenAiStory({ prompt: '', keyWords: language[currentLanguage].miniStory })).finally(() =>
+        dispatch(updateStatusApiIsLoading(false))
+      );
+      setTransResult("");
+      dispatch(addUserMessageToCurrentStory(""));
+      dispatch(saveCurrentStory());
       setFile(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,7 +88,7 @@ export const Mic: FC = () => {
       if (res && res.code === 11000) {
         setTransResult(res.result);
         if (res.result === '') {
-          setTransResult(' ');
+          setTransResult('ClearString');
         }
         clearInterval(interval);
         setIsSubmissionOk(false);
@@ -95,7 +104,7 @@ export const Mic: FC = () => {
         clearInterval(interval);
         setIsSubmissionOk(false);
         dispatch(addUserMessageToCurrentStory(""));
-        dispatch(getOpenAiStory({ prompt: "", keyWords: language[currentLanguage].keyWords })).finally(() =>
+        dispatch(getOpenAiStory({ prompt: "", keyWords: language[currentLanguage].miniStory })).finally(() =>
           dispatch(updateStatusApiIsLoading(false))
         );
       }

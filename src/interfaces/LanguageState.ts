@@ -7,6 +7,7 @@ export interface lang {
     inputPlaceholder: string;
     inputPlaceholderAwaiting: string;
     keyWords: string;
+    miniStory: string;
 };
 
 export interface LanguageState {
