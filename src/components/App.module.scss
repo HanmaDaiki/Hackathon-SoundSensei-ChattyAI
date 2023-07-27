@@ -1,3 +1,7 @@
 .app {
   display: flex;
 }
+
+.blockclicks {
+  pointer-events: none;
+}

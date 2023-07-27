@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, SyntheticEvent } from "react";
 import cn from "classnames";
 import { HintOverlayProps } from "../../../interfaces/HintOverlayProps";
 
@@ -7,8 +7,11 @@ import styles from "./HintOverlay.module.scss";
 export const HintOverlay: FC<HintOverlayProps> = ({
   handleHintsOverlay,
 }: HintOverlayProps) => {
+  const handleClick = () => {
+    handleHintsOverlay();
+  };
   return (
-    <div onClick={handleHintsOverlay} className={styles.overlaycontainer}>
+    <div onClick={handleClick} className={styles.overlaycontainer}>
       <div className={styles.hintoverlay}>
         <div className={styles.hintbubble}>Хочешь послушать сказку?</div>
         <div className={cn(styles.hintbubble, styles.newtalehint)}>

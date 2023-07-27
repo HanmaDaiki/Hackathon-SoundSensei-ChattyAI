@@ -1,5 +1,6 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import cn from "classnames";
 
 import { setLanguage } from "../store/languageSlice";
 import { Favorites } from "./pages/Favorites/Favorites";
@@ -41,17 +42,23 @@ export function App() {
   }, []);
 
   return (
-    <div className={styles.app}>
-      <SideBar handleHintsOverlay={handleHintsOverlay} />
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/library" element={<Library />} />
-        <Route path="/*" element={<NotFoundPage />} />
-      </Routes>
+    <>
+      <div
+        className={
+          isHintOverlayOpened ? cn(styles.app, styles.blockclicks) : styles.app
+        }
+      >
+        <SideBar handleHintsOverlay={handleHintsOverlay} />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/library" element={<Library />} />
+          <Route path="/*" element={<NotFoundPage />} />
+        </Routes>
+      </div>
       {isHintOverlayOpened && (
         <HintOverlay handleHintsOverlay={handleHintsOverlay} />
       )}
-    </div>
+    </>
   );
 }
