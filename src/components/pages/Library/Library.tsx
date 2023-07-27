@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { Header } from '../../simple/Header/Header';
 import styles from './Library.module.scss';
 import { LanguageState } from '../../../interfaces/LanguageState';
+import { Card } from '../../ui/Card/Card';
 
 
 export const Library: FC = () => {
@@ -19,10 +20,12 @@ export const Library: FC = () => {
       <div className={styles.container}>
         {
           allStories.map((story, index) => {
-            return <span key={index}>{story.reduce((accumulator, currentValue) => accumulator + currentValue.text, '')}</span>
+            return <Card key={index} text={story.reduce((accumulator, currentValue) => accumulator + currentValue.text, '')} />
           })
         }
       </div>
+
+      <div className={styles.counters}>{allStories.length}/20</div>
     </div>
   );
 };
