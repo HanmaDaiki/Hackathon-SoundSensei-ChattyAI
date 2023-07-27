@@ -2,20 +2,18 @@ import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import cn from "classnames";
 
-import { RecorderMic } from "../../simple/RecorderMic/RecorderMic";
 import {
   addUserMessageToCurrentStory,
   getOpenAiStory,
+  updateStatusApiIsLoading,
 } from "../../../store/storySlice";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { StoryState } from "../../../interfaces/StoryState";
-import randomImg from "../../../images/random-image.jpg";
-
-import styles from "./MainPage.module.scss";
-import { Transcribe } from "../../simple/Transcribe/Transcribe";
 import { Chat } from "../../simple/Chat/Chat";
 import { Header } from "../../simple/Header/Header";
 import { Tools } from "../../simple/Tools/Tools";
+import styles from "./MainPage.module.scss";
+
 
 export const MainPage: FC = () => {
   const [prompt, setPrompt] = useState<string>("");

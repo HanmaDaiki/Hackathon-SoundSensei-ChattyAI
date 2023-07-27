@@ -6,9 +6,7 @@ import { Next } from '../../ui/Next/Next';
 import { VoiceText } from '../../ui/VoiceText/VoiceText';
 
 type IProps = {
-
   handleHover: () => void
-
 }
 export const Tools:FC<IProps> = ({handleHover}: IProps) =>
   {
