@@ -8,7 +8,7 @@ const initialState: StoryState = {
   statusApiIsLoading: false,
 };
 
-export const getOpenAiStory = createAsyncThunk('story/getOpenAiStory', async (data: { prompt: string }) => {
+export const getOpenAiStory = createAsyncThunk('story/getOpenAiStory', async (data: { prompt: string, keyWords: string }) => {
   try {
     const configuration = new Configuration({
       apiKey: process.env.REACT_APP_API_KEY,
@@ -17,7 +17,7 @@ export const getOpenAiStory = createAsyncThunk('story/getOpenAiStory', async (da
 
     const result = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: `${data.prompt}` }],
+      messages: [{ role: 'user', content: `${data.keyWords} ${data.prompt}` }],
     });
     return result.data.choices[0].message?.content;
   } catch (err) {

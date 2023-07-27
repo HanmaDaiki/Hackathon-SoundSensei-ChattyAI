@@ -28,14 +28,14 @@ export const Mic: FC = () => {
   const { statusApiIsLoading } = useSelector(
     (state: { story: StoryState }) => state.story
   );
-  const { currentLanguage } = useSelector((state: { lang: LanguageState }) => state.lang);
+  const { language, currentLanguage } = useSelector((state: { lang: LanguageState }) => state.lang);
 
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (transResult.length !== 0) {
-      dispatch(getOpenAiStory({ prompt: transResult })).finally(() =>
+      dispatch(getOpenAiStory({ prompt: transResult, keyWords: language[currentLanguage].keyWords })).finally(() =>
         dispatch(updateStatusApiIsLoading(false))
       );
       dispatch(addUserMessageToCurrentStory(transResult));
@@ -43,6 +43,7 @@ export const Mic: FC = () => {
       setTransResult("");
       setFile(null);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transResult, dispatch]);
 
   useEffect(() => {
@@ -77,6 +78,9 @@ export const Mic: FC = () => {
       console.log("result: ", res);
       if (res && res.code === 11000) {
         setTransResult(res.result);
+        if (res.result === '') {
+          setTransResult(' ');
+        }
         clearInterval(interval);
         setIsSubmissionOk(false);
       }
@@ -91,7 +95,7 @@ export const Mic: FC = () => {
         clearInterval(interval);
         setIsSubmissionOk(false);
         dispatch(addUserMessageToCurrentStory(""));
-        dispatch(getOpenAiStory({ prompt: "" })).finally(() =>
+        dispatch(getOpenAiStory({ prompt: "", keyWords: language[currentLanguage].keyWords })).finally(() =>
           dispatch(updateStatusApiIsLoading(false))
         );
       }

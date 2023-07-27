@@ -6,6 +6,7 @@ export interface lang {
     helloMessage: string;
     inputPlaceholder: string;
     inputPlaceholderAwaiting: string;
+    keyWords: string;
 };
 
 export interface LanguageState {
