@@ -1,12 +1,12 @@
 import { FC, useState } from "react";
 import { useSelector } from "react-redux";
-import cn from "classnames";
 
 import {
   addUserMessageToCurrentStory,
   getOpenAiStory,
   updateStatusApiIsLoading,
 } from "../../../store/storySlice";
+import { LanguageState } from '../../../interfaces/LanguageState';
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { StoryState } from "../../../interfaces/StoryState";
 import { Chat } from "../../simple/Chat/Chat";
@@ -18,7 +18,7 @@ import styles from "./MainPage.module.scss";
 export const MainPage: FC = () => {
   const [prompt, setPrompt] = useState<string>("");
   const { statusApiIsLoading } = useSelector((state: { story: StoryState }) => state.story);
-  const [isMicHovered, toggleIsMicHovered] = useState<boolean>(false);
+  const { language, currentLanguage } = useSelector((state: {lang: LanguageState} ) => state.lang);
   const dispatch = useAppDispatch();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,50 +26,32 @@ export const MainPage: FC = () => {
     dispatch(updateStatusApiIsLoading(true));
     dispatch(addUserMessageToCurrentStory(prompt));
     setPrompt('');
-
-    await dispatch(getOpenAiStory({ prompt }));
-
+    if (prompt.length > 0){
+      await dispatch(getOpenAiStory({ prompt, keyWords: language[currentLanguage].keyWords }));
+    } else {
+      await dispatch(getOpenAiStory({ prompt, keyWords: language[currentLanguage].miniStory }));
+    }
     dispatch(updateStatusApiIsLoading(false));
-  };
-
-  const handleMicHover = () => {
-    toggleIsMicHovered((cur) => !cur);
   };
 
   return (
     <div className={styles.main}>
-      {/* <h1>Main Page</h1>
-      <img src={randomImg} alt={`Картинка ${randomImg}`} width={200} />
-      <div className={styles['output']}>
-        {currentStory.map((story, index) => (
-          <p key={index}>{story}</p>
-        ))}
-      </div>
-      {loading && <p>Получаем ответ...</p>}
-      
-      <RecorderMic />
-      <Transcribe /> */}
-      <Header from='Сказочник' />
+      <Header from={language[currentLanguage].storyteller} />
       <Chat />
 
       <form
-        className={cn(styles.form, isMicHovered ? styles.formwithhover : null)}
+        className={styles.form}
         onSubmit={handleSubmit}
       >
         <input
           disabled={statusApiIsLoading}
-          tabIndex={1}
-          placeholder={
-            statusApiIsLoading
-              ? "Сказочник генерирует сказку..."
-              : "Какую сказку вы хотите?"
-          }
+          placeholder={statusApiIsLoading ? language[currentLanguage].inputPlaceholderAwaiting : language[currentLanguage].inputPlaceholder}
           onChange={(elser) => setPrompt(elser.target.value)}
           value={prompt}
         />
         <button disabled={statusApiIsLoading} type="submit"></button>
       </form>
-      <Tools handleHover={handleMicHover} />
+      <Tools />
     </div>
   );
 };

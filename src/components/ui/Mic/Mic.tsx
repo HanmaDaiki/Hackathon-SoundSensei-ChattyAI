@@ -12,6 +12,7 @@ import { apiSpeechFlow } from "../../../utils/ApiSpeechFlow";
 import { useSelector } from "react-redux";
 import { StoryState } from "../../../interfaces/StoryState";
 import styles from "./Mic.module.scss";
+import { LanguageState } from '../../../interfaces/LanguageState';
 
 const MicRecorderToMp3 = require("mic-recorder-to-mp3");
 
@@ -19,10 +20,7 @@ const Mp3Recorder = new MicRecorderToMp3({
   bitRate: 128,
 });
 
-type IProps = {
-  handleHover: () => void;
-};
-export const Mic: FC<IProps> = ({ handleHover }) => {
+export const Mic: FC = () => {
   const [file, setFile] = useState<File | null>();
   const [isSubmissionOk, setIsSubmissionOk] = useState(false);
   const [transResult, setTransResult] = useState("");
@@ -30,19 +28,31 @@ export const Mic: FC<IProps> = ({ handleHover }) => {
   const { statusApiIsLoading } = useSelector(
     (state: { story: StoryState }) => state.story
   );
+  const { language, currentLanguage } = useSelector((state: { lang: LanguageState }) => state.lang);
+
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (transResult.length !== 0) {
-      dispatch(getOpenAiStory({ prompt: transResult })).finally(() =>
+    if (transResult.length !== 0 && transResult !== 'ClearString') {
+      dispatch(getOpenAiStory({ prompt: transResult, keyWords: language[currentLanguage].keyWords })).finally(() =>
         dispatch(updateStatusApiIsLoading(false))
       );
       dispatch(addUserMessageToCurrentStory(transResult));
       dispatch(saveCurrentStory());
       setTransResult("");
       setFile(null);
+    } 
+    if (transResult === 'ClearString') {
+      dispatch(getOpenAiStory({ prompt: '', keyWords: language[currentLanguage].miniStory })).finally(() =>
+        dispatch(updateStatusApiIsLoading(false))
+      );
+      setTransResult("");
+      dispatch(addUserMessageToCurrentStory(""));
+      dispatch(saveCurrentStory());
+      setFile(null);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transResult, dispatch]);
 
   useEffect(() => {
@@ -77,6 +87,9 @@ export const Mic: FC<IProps> = ({ handleHover }) => {
       console.log("result: ", res);
       if (res && res.code === 11000) {
         setTransResult(res.result);
+        if (res.result === '') {
+          setTransResult('ClearString');
+        }
         clearInterval(interval);
         setIsSubmissionOk(false);
       }
@@ -91,7 +104,7 @@ export const Mic: FC<IProps> = ({ handleHover }) => {
         clearInterval(interval);
         setIsSubmissionOk(false);
         dispatch(addUserMessageToCurrentStory(""));
-        dispatch(getOpenAiStory({ prompt: "" })).finally(() =>
+        dispatch(getOpenAiStory({ prompt: "", keyWords: language[currentLanguage].miniStory })).finally(() =>
           dispatch(updateStatusApiIsLoading(false))
         );
       }
@@ -107,7 +120,7 @@ export const Mic: FC<IProps> = ({ handleHover }) => {
 
   const handleSubmitRecording = async () => {
     if (!file) return;
-    const formData = createFormData("ru", file);
+    const formData = createFormData(currentLanguage, file);  
     apiSpeechFlow.postTranscription(formData).then((res) => {
       console.log("result: ", res);
       if (res && res.code === 10000) {
@@ -129,8 +142,6 @@ export const Mic: FC<IProps> = ({ handleHover }) => {
       ) : (
         <button
           className={styles.mic}
-          onMouseEnter={handleHover}
-          onMouseLeave={handleHover}
           onMouseDown={() => startRecording()}
           onMouseUp={async () => {
             await stopRecording();

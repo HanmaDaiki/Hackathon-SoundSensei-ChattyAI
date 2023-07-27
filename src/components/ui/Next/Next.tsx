@@ -9,6 +9,7 @@ import styles from './Next.module.scss';
 
 export const Next: FC = () => {
   const { statusApiIsLoading } = useSelector((state: { story: StoryState }) => state.story);
+
   const dispatch = useAppDispatch();
 
   return <button disabled={statusApiIsLoading} className={styles.next} onClick={() => {

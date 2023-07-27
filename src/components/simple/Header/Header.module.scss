@@ -1,10 +1,23 @@
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-top: 60px;
-}
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .customSelect {
+    position: absolute;
+    top: 60px;
+    right: 76px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
 .caption {
   font-family: "Lena";
   font-size: 32px;
@@ -20,10 +33,4 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.flags {
-  position: absolute;
-  top: 60px;
-  right: 75px;
-}
+} 
