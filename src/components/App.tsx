@@ -10,6 +10,9 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { MainPage } from './pages/MainPage/MainPage';
 import { SideBar } from './simple/SideBar/SideBar';
 import styles from './App.module.scss';
+import { Overlay } from './ui/Overlay/Overlay';
+import { useSelector } from 'react-redux';
+import { StoryState } from '../interfaces/StoryState';
 
 
 const MicRecorderTemp = require('mic-recorder-to-mp3');
@@ -19,6 +22,7 @@ const Mp3Recorder = new MicRecorderTemp({
 
 
 export function App() {
+  const { statusApiIsLoading } = useSelector((state: { story: StoryState }) => state.story);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -43,6 +47,7 @@ export function App() {
         <Route path='/library' element={<Library />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
+      { statusApiIsLoading && <Overlay /> }
     </div>
   )
 }
