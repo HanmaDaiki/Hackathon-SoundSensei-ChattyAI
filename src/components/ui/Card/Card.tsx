@@ -35,7 +35,7 @@ export const Card: FC<IProps> = ({ story }) => {
             toggleOpen(false);
           }}
         >
-          <div className={styles.content}>
+          <div className={styles.content} onClick={(e) => e.stopPropagation()}>
             <div className={styles.text}>{story.text}</div>
             <div className={styles.decor} />
           </div>
