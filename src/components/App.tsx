@@ -46,7 +46,7 @@ export function App() {
     Mp3Recorder.stop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(localStorage.getItem("firstTime") !== 'false')
+  
   return (
     <>
       <div
