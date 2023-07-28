@@ -8,6 +8,7 @@ export interface lang {
     inputPlaceholderAwaiting: string;
     keyWords: string;
     miniStory: string;
+    emptyLib: string;
 };
 
 export interface LanguageState {
