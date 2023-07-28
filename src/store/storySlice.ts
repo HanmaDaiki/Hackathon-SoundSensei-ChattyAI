@@ -7,6 +7,7 @@ import { imagesCard } from '../utils/constants';
 const initialState: StoryState = {
   currentStory: [],
   allStories: [],
+  favoritesStories: [],
   statusApiIsLoading: false,
 };
 
@@ -33,6 +34,7 @@ const storySlice = createSlice({
   reducers: {
     loadData: (state) => {
       state.allStories = JSON.parse(localStorage.getItem('allStories') || '[]');
+      state.favoritesStories = JSON.parse(localStorage.getItem('favoritesStories') || '[]');
       state.currentStory = JSON.parse(
         localStorage.getItem('currentStory') || `[]`
       );
@@ -58,13 +60,25 @@ const storySlice = createSlice({
       state.allStories.forEach((story, index) => {
         if(story.text === action.payload) {
           state.allStories[index].isLiked = !state.allStories[index].isLiked;
+          if(state.allStories[index].isLiked) {
+            state.favoritesStories.push(state.allStories[index]);
+          }
+
+          if(!state.allStories[index].isLiked) {
+            state.favoritesStories = state.favoritesStories.filter((story) => story.text !== state.allStories[index].text);
+          }
         }
-      })
+      });
+
+      localStorage.setItem('favoritesStories', JSON.stringify(state.favoritesStories));
+      localStorage.setItem('allStories', JSON.stringify(state.allStories));
     },
 
     nextStory: (state) => {
-      state.allStories.push({ isLiked: false, text: state.currentStory.reduce((accumulator, currentValue) => accumulator + currentValue.text, ''), image: imagesCard[generateRandomNumber(imagesCard.length)] });
-      state.currentStory = [];
+      if(state.currentStory.length > 0) {
+        state.allStories.push({ isLiked: false, text: state.currentStory.reduce((accumulator, currentValue) => accumulator + currentValue.text, ''), image: imagesCard[generateRandomNumber(imagesCard.length)] });
+        state.currentStory = [];
+      }
     },
 
     updateStatusApiIsLoading(state, action) {

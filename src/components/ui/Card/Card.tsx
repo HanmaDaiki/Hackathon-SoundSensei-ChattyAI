@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { AllStoriesMessage } from "../../../interfaces/StoryState";
 import styles from "./Card.module.scss";
-import { saveAllStories, toggleLikeStory } from "../../../store/storySlice";
+import { toggleLikeStory } from "../../../store/storySlice";
 
 interface IProps {
   story: AllStoriesMessage;
@@ -22,7 +22,6 @@ export const Card: FC<IProps> = ({ story }) => {
           onClick={(e) => {
             e.stopPropagation();
             dispatch(toggleLikeStory(story.text));
-            dispatch(saveAllStories());
           }}
           className={story.isLiked ? styles.like_active : styles.like}
         ></button>

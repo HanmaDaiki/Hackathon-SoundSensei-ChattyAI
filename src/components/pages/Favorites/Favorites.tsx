@@ -8,7 +8,7 @@ import { StoryState } from "../../../interfaces/StoryState";
 import { Card } from "../../ui/Card/Card";
 
 export const Favorites: FC = () => {
-  const { allStories } = useSelector(
+  const { favoritesStories } = useSelector(
     (state: { story: StoryState }) => state.story
   );
   const { language, currentLanguage } = useSelector(
@@ -19,7 +19,7 @@ export const Favorites: FC = () => {
     <div className={styles.favorites}>
       <Header from={language[currentLanguage].favorites} />
 
-      {allStories.filter((story) => story.isLiked).length === 0 ? (
+      {favoritesStories.length === 0 ? (
         <div className={styles.empty}>
           <div className={styles.emptyImg} />
           <div className={styles.emptyText}>
@@ -28,7 +28,7 @@ export const Favorites: FC = () => {
         </div>
       ) : (
         <div className={styles.container}>
-          {allStories.filter((story) => story.isLiked).map((story, index) => {
+          {favoritesStories.map((story, index) => {
             return (
               <Card
                 key={index}
@@ -39,7 +39,7 @@ export const Favorites: FC = () => {
         </div>
       )}
 
-      <div className={styles.counters}>{allStories.filter((story) => story.isLiked).length}</div>
+      <div className={styles.counters}>{favoritesStories.length}</div>
     </div>
   );
 };

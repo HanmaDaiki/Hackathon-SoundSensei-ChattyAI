@@ -12,5 +12,6 @@ export interface AllStoriesMessage {
 export interface StoryState {
   currentStory: Message[];
   allStories: AllStoriesMessage[];
+  favoritesStories: AllStoriesMessage[];
   statusApiIsLoading: boolean;
 }
