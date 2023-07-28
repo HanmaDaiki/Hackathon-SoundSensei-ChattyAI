@@ -58,10 +58,12 @@ const storySlice = createSlice({
         }
 
         state.allStories.unshift({
-          text: state.currentStory.reduce(
-            (accumulator, currentValue) => accumulator + currentValue.text,
-            ""
-          ),
+          text: state.currentStory
+            .filter((story) => story.owner === "bot")
+            .reduce(
+              (accumulator, currentValue) => accumulator + currentValue.text,
+              ""
+            ),
           image: imagesCard[generateRandomNumber(imagesCard.length)],
         });
         state.currentStory = [];
@@ -107,6 +109,6 @@ export const {
   loadData,
   updateStatusApiIsLoading,
   saveStory,
-  deleteSavedStory
+  deleteSavedStory,
 } = storySlice.actions;
 export const storyReducer = storySlice.reducer;
