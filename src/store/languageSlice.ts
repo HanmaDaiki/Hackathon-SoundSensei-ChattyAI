@@ -15,7 +15,7 @@ const initialState: LanguageState = {
       inputPlaceholderAwaiting: "Now I will come up with something ...",
       keyWords: "Tell the fairy tale about ",
       miniStory: "Tell a fairy tale in one sentence",
-      emptyLib: `We have not yet come up with a single fairy tale \n It's time to create them in a chat :)`,
+      emptyLib: `We have not yet come up with a single fairy tale \n It's time to create them in a Chat :)`,
       emptyFav: "Mark the heart of any fairy tale,\n and it will appear here",
       hint: "Hint",
       hintNewTale:
@@ -41,8 +41,7 @@ const initialState: LanguageState = {
       emptyFav: "Отметь сердечком любую сказку,\n и она появится здесь",
       hint: "Подсказка",
       hintNewTale: "Придумаем другую сказку? Нажми чтобы очистить чат",
-      hintFavTale:
-        "Нажми на сердечко, и сказка сохранится в твоей 'Библиотеке'",
+      hintFavTale: "Нажми на сердечко, и сказка сохранится в твоей Библиотеке",
       hintMic: "Чтобы создать сказку зажми кнопку со звёздочкой и говори",
     },
     zh: {
@@ -86,7 +85,7 @@ const initialState: LanguageState = {
       library: "Bibliothèque",
       favorites: "Favoris",
       helloMessage:
-        "Bonjour! Mon nom est un conteur. Je peux trouver et raconter un conte de fées",
+        "Bonjour! Mon nom est un Conteur. Je peux trouver et raconter un conte de fées",
       inputPlaceholder: "Quel conte de fées voulez-vous?",
       inputPlaceholderAwaiting: "Maintenant, je vais trouver quelque chose ...",
       keyWords: "Raconter le conte de fées",
