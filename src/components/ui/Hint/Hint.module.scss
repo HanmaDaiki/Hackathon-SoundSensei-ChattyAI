@@ -1,0 +1,34 @@
+.iconcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 47px;
+  height: 41px;
+}
+
+.hintcontainer {
+  width: 349px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 28px 40px;
+
+  border-radius: 0px 32px 32px 0px;
+  background: #7386eb;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.hintcaption {
+  font-family: "Lena";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  box-sizing: border-box;
+  letter-spacing: 1.48px;
+  color: #eff2ff;
+}
