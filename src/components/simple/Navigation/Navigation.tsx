@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import cn from "classnames";
 
 import { StoryState } from "../../../interfaces/StoryState";
 import { LanguageState } from "../../../interfaces/LanguageState";
