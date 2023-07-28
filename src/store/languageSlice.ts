@@ -10,7 +10,7 @@ const initialState: LanguageState = {
       library: "Library",
       favorites: "Favorites",
       helloMessage:
-        "Hello! My name is a storyteller. I can come up with and tell a fairy tale",
+        "Hello! My name is a Storyteller. I can come up with and tell a fairy tale",
       inputPlaceholder: "What fairy tale do you want?",
       inputPlaceholderAwaiting: "Now I will come up with something ...",
       keyWords: "Tell the fairy tale about ",
