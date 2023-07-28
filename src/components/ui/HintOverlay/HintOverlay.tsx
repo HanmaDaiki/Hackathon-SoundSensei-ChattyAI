@@ -8,6 +8,7 @@ export const HintOverlay: FC<HintOverlayProps> = ({
   handleHintsOverlay,
 }: HintOverlayProps) => {
   const handleClick = () => {
+    localStorage.setItem('firstTime', 'false');
     handleHintsOverlay();
   };
   return (

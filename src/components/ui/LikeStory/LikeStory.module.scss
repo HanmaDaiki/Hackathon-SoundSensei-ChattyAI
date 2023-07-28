@@ -1,17 +1,18 @@
-.voiceText {
+.like {
   width: 59px;
   height: 59px;
   border-radius: 50%;
   border: none;
+  padding: 17px 13px 13px 14px; 
   box-sizing: border-box;
-  padding: 12px;
   background: radial-gradient(68.62% 68.62% at 50.00% 50.00%, rgba(88, 188, 235, 0.00) 1.00%, rgba(88, 188, 235, 0.55) 34.33%, #90A1FC 74.96%, rgba(88, 188, 235, 0.00) 100%), linear-gradient(216deg, #AD86FF 19.75%, #5E72E1 66.62%);
   cursor: pointer;
+
   .img {
-    background-image: url(../../../images/megaphone.png);
-    background-position: center;
+    background-image: url(../../../images/likebutton.png);
     background-repeat: no-repeat;
-    width: 35px;
-    height: 35px;
+    background-size: contain;
+    width: 32px;
+    height: 29px;      
   }
 }

@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import cn from "classnames";
 
 import { setLanguage } from "../store/languageSlice";
-import { Favorites } from "./pages/Favorites/Favorites";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { loadData } from "../store/storySlice";
 import { Library } from "./pages/Library/Library";
@@ -27,7 +26,7 @@ export function App() {
     (state: { story: StoryState }) => state.story
   );
   const dispatch = useAppDispatch();
-  const [isHintOverlayOpened, setIsHintOverlayOpened] = useState(true);
+  const [isHintOverlayOpened, setIsHintOverlayOpened] = useState(localStorage.getItem("firstTime") !== 'false' ? true : false);
   const navigate = useNavigate();
 
   const handleHintsOverlay = () => {
@@ -47,7 +46,7 @@ export function App() {
     Mp3Recorder.stop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  console.log(localStorage.getItem("firstTime") !== 'false')
   return (
     <>
       <div
@@ -58,7 +57,6 @@ export function App() {
         <SideBar handleHintsOverlay={handleHintsOverlay} />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/favorites" element={<Favorites />} />
           <Route path="/library" element={<Library />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>

@@ -33,10 +33,30 @@
     align-items: flex-start;
   }
 
+  .delete {
+    width: 28px;
+    height: 28px;
+    background-image: url(../../../images/delete-card.png);
+    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
   .like {
     width: 20px;
     height: 18px;
     background-image: url(../../../images/like.png);
+    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .like_active {
+    width: 20px;
+    height: 18px;
+    background-image: url(../../../images/like_active.png);
     box-sizing: border-box;
     border: none;
     background-color: transparent;

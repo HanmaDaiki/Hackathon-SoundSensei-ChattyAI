@@ -32,11 +32,7 @@ export const Library: FC = () => {
             return (
               <Card
                 key={index}
-                text={story.reduce(
-                  (accumulator, currentValue) =>
-                    accumulator + currentValue.text,
-                  ""
-                )}
+                story={story}
               />
             );
           })}

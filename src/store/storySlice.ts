@@ -1,6 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { StoryState } from '../interfaces/StoryState';
-import { Configuration, OpenAIApi } from 'openai';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { StoryState } from "../interfaces/StoryState";
+import { Configuration, OpenAIApi } from "openai";
+import { generateRandomNumber } from "../utils/generateRandomNumber";
+import { imagesCard } from "../utils/constants";
 
 const initialState: StoryState = {
   currentStory: [],
@@ -8,59 +10,79 @@ const initialState: StoryState = {
   statusApiIsLoading: false,
 };
 
-export const getOpenAiStory = createAsyncThunk('story/getOpenAiStory', async (data: { prompt: string, keyWords: string }) => {
-  try {
-    const configuration = new Configuration({
-      apiKey: process.env.REACT_APP_API_KEY,
-    });
-    const openai = new OpenAIApi(configuration);
+export const getOpenAiStory = createAsyncThunk(
+  "story/getOpenAiStory",
+  async (data: { prompt: string; keyWords: string }) => {
+    try {
+      const configuration = new Configuration({
+        apiKey: process.env.REACT_APP_API_KEY,
+      });
+      const openai = new OpenAIApi(configuration);
 
-    const result = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: `${data.keyWords} ${data.prompt}` }],
-    });
-    return result.data.choices[0].message?.content;
-  } catch (err) {
-    console.log(err);
+      const result = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [
+          { role: "user", content: `${data.keyWords} ${data.prompt}` },
+        ],
+      });
+      return result.data.choices[0].message?.content;
+    } catch (err) {
+      console.log(err);
+    }
   }
-});
+);
 
 const storySlice = createSlice({
-  name: 'story',
+  name: "story",
   initialState,
   reducers: {
     loadData: (state) => {
-      state.allStories = JSON.parse(localStorage.getItem('allStories') || '[]');
+      state.allStories = JSON.parse(localStorage.getItem("allStories") || "[]");
       state.currentStory = JSON.parse(
-        localStorage.getItem('currentStory') || `[]`
+        localStorage.getItem("currentStory") || `[]`
       );
     },
 
     addUserMessageToCurrentStory: (state, action) => {
-      state.currentStory.push({ owner: 'user', text: action.payload });
+      state.currentStory.push({ owner: "user", text: action.payload });
     },
 
     saveCurrentStory: (state) => {
-      localStorage.setItem('currentStory', JSON.stringify(state.currentStory));
+      localStorage.setItem("currentStory", JSON.stringify(state.currentStory));
     },
 
-    saveAllStories: (state) => {
-      localStorage.setItem('allStories', JSON.stringify(state.allStories));
-      localStorage.setItem(
-        'currentStory',
-        JSON.stringify([])
-      );
+    saveStory: (state) => {
+      if (state.currentStory.length > 0) {
+        if (state.allStories.length === 20) {
+          state.allStories.pop();
+        }
+
+        state.allStories.unshift({
+          text: state.currentStory
+            .filter((story) => story.owner === "bot")
+            .reduce(
+              (accumulator, currentValue) => accumulator + currentValue.text,
+              ""
+            ),
+          image: imagesCard[generateRandomNumber(imagesCard.length)],
+        });
+        state.currentStory = [];
+
+        localStorage.setItem("allStories", JSON.stringify(state.allStories));
+        localStorage.setItem("currentStory", JSON.stringify([]));
+      }
     },
 
     nextStory: (state) => {
-      if (state.allStories.length === 20) {
-        state.allStories.shift();
-      }
-      
-      if ([...state.currentStory.filter((story) => story.owner === 'bot')].length > 0) {
-        state.allStories.push([...state.currentStory.filter((story) => story.owner === 'bot')]);
-        state.currentStory = [];
-      }
+      state.currentStory = [];
+      localStorage.setItem("currentStory", JSON.stringify([]));
+    },
+
+    deleteSavedStory: (state, action) => {
+      state.allStories = state.allStories.filter(
+        (story) => story.text !== action.payload
+      );
+      localStorage.setItem("allStories", JSON.stringify(state.allStories));
     },
 
     updateStatusApiIsLoading(state, action) {
@@ -69,9 +91,12 @@ const storySlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getOpenAiStory.fulfilled, (state, action) => {
-      if (typeof action.payload === 'string') {
-        state.currentStory.push({ owner: 'bot', text: action.payload });
-        localStorage.setItem('currentStory', JSON.stringify(state.currentStory));
+      if (typeof action.payload === "string") {
+        state.currentStory.push({ owner: "bot", text: action.payload });
+        localStorage.setItem(
+          "currentStory",
+          JSON.stringify(state.currentStory)
+        );
       }
     });
   },
@@ -81,8 +106,9 @@ export const {
   addUserMessageToCurrentStory,
   nextStory,
   saveCurrentStory,
-  saveAllStories,
   loadData,
   updateStatusApiIsLoading,
+  saveStory,
+  deleteSavedStory,
 } = storySlice.actions;
 export const storyReducer = storySlice.reducer;

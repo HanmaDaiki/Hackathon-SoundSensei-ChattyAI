@@ -6,9 +6,7 @@ import { StoryState } from "../../../interfaces/StoryState";
 import { LanguageState } from "../../../interfaces/LanguageState";
 
 import magicBall from "../../../images/magic-ball.png";
-import heart from "../../../images/heart.png";
 import book from "../../../images/book.png";
-
 import styles from "./Navigation.module.scss";
 
 export const Navigation: FC = () => {
@@ -22,40 +20,17 @@ export const Navigation: FC = () => {
   return (
     <>
       <nav className={styles.navigation}>
-        <div>
-          <NavLink
-            to="/"
-            style={{ pointerEvents: statusApiIsLoading ? "none" : "auto" }}
-            className={({ isActive, isPending }) =>
-              isPending
-                ? styles.pending
-                : isActive
-                ? styles.active
-                : styles.link
-            }
-          >
-            <div className={styles.iconcontainer}>
-              <img
-                src={magicBall}
-                alt={"Волшебный шар"}
-                width={34}
-                height={41}
-              />
-            </div>
-            {language[currentLanguage].chat}
-          </NavLink>
-        </div>
         <NavLink
-          to="/favorites"
+          to="/"
           style={{ pointerEvents: statusApiIsLoading ? "none" : "auto" }}
           className={({ isActive, isPending }) =>
             isPending ? styles.pending : isActive ? styles.active : styles.link
           }
         >
           <div className={styles.iconcontainer}>
-            <img src={heart} alt={"Сердечко"} width={37} height={37} />
+            <img src={magicBall} alt={"Волшебный шар"} width={34} height={41} />
           </div>
-          {language[currentLanguage].favorites}
+          {language[currentLanguage].chat}
         </NavLink>
         <NavLink
           to="/library"

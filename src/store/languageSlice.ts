@@ -15,6 +15,7 @@ const initialState: LanguageState = {
       keyWords: 'Tell the fairy tale about ',
       miniStory: 'Tell the fairy tale short in one sentence about',
       emptyLib: `We have not yet come up with a single fairy tale \n It's time to create them in a chat :)`,
+      emptyFav: 'Mark the heart of any fairy tale,\n and it will appear here'
     },
     ru: {
       storyteller: 'Сказочник',
@@ -25,8 +26,9 @@ const initialState: LanguageState = {
       inputPlaceholder: 'Какую сказку ты хочешь?',
       inputPlaceholderAwaiting: 'Сейчас что-нибудь придумаю ...',
       keyWords: 'Расскажи сказку о ',
-      miniStory: 'Расскажи сказку короткую в одно предложение о',
+      miniStory: 'Расскажи сказку короткую в одно предложение ',
       emptyLib: 'Мы еще не придумали ни одной сказки\n Пора создавать их в Чате :)',
+      emptyFav: 'Отметь сердечком любую сказку,\n и она появится здесь'
     },
     zh: {
       storyteller: '说故事的人',
@@ -39,6 +41,7 @@ const initialState: LanguageState = {
       keyWords: '讲述童话 ',
       miniStory: '在一句话中告诉童话般的故事',
       emptyLib: '我们还没有提出一个童话故事\n 是时候在聊天中创建它们:)',
+      emptyFav: '标记任何童话的心，\n 它将出现在这里'
     },
     ae: {
       storyteller: 'القصص',
@@ -51,6 +54,8 @@ const initialState: LanguageState = {
       keyWords: '',
       miniStory: '在一句话中告诉童话般的故事',
       emptyLib: 'Мы еще не придумали ни одной сказки Пора создавать их в Чате :)',
+      emptyFav: 'Отметь сердечком любую сказку,\n и она появится здесь'
+
     },
     fr: {
       storyteller: 'Conteur',
@@ -63,6 +68,7 @@ const initialState: LanguageState = {
       keyWords: 'Raconter le conte de fées ',
       miniStory: 'Raconter le conte de fées en une phrase sur',
       emptyLib: "Nous n'avons pas encore trouvé un seul conte de fées\nIl est temps de les créer dans un chat :)",
+      emptyFav: 'Marquez le cœur de tout conte de fées,\n et il apparaîtra ici'
     },
   },
 }
