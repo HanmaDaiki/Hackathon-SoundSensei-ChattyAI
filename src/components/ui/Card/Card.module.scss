@@ -43,6 +43,16 @@
     cursor: pointer;
   }
 
+  .like_active {
+    width: 20px;
+    height: 18px;
+    background-image: url(../../../images/like_active.png);
+    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
   .full {
     width: 100vw;
     height: 100vh;

@@ -9,6 +9,7 @@ export interface lang {
     keyWords: string;
     miniStory: string;
     emptyLib: string;
+    emptyFav: string;
 };
 
 export interface LanguageState {

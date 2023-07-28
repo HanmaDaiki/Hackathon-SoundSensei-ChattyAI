@@ -3,8 +3,14 @@ export interface Message {
   text: string;
 }
 
+export interface AllStoriesMessage {
+  text: string;
+  isLiked: boolean;
+  image: string;
+}
+
 export interface StoryState {
   currentStory: Message[];
-  allStories: Message[][];
+  allStories: AllStoriesMessage[];
   statusApiIsLoading: boolean;
 }

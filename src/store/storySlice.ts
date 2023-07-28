@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { StoryState } from '../interfaces/StoryState';
 import { Configuration, OpenAIApi } from 'openai';
+import { generateRandomNumber } from '../utils/generateRandomNumber';
+import { imagesCard } from '../utils/constants';
 
 const initialState: StoryState = {
   currentStory: [],
@@ -52,15 +54,17 @@ const storySlice = createSlice({
       );
     },
 
+    toggleLikeStory: (state, action) => {
+      state.allStories.forEach((story, index) => {
+        if(story.text === action.payload) {
+          state.allStories[index].isLiked = !state.allStories[index].isLiked;
+        }
+      })
+    },
+
     nextStory: (state) => {
-      if (state.allStories.length === 20) {
-        state.allStories.shift();
-      }
-      
-      if ([...state.currentStory.filter((story) => story.owner === 'bot')].length > 0) {
-        state.allStories.push([...state.currentStory.filter((story) => story.owner === 'bot')]);
-        state.currentStory = [];
-      }
+      state.allStories.push({ isLiked: false, text: state.currentStory.reduce((accumulator, currentValue) => accumulator + currentValue.text, ''), image: imagesCard[generateRandomNumber(imagesCard.length)] });
+      state.currentStory = [];
     },
 
     updateStatusApiIsLoading(state, action) {
@@ -84,5 +88,6 @@ export const {
   saveAllStories,
   loadData,
   updateStatusApiIsLoading,
+  toggleLikeStory
 } = storySlice.actions;
 export const storyReducer = storySlice.reducer;

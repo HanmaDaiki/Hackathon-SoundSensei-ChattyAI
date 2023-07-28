@@ -32,18 +32,14 @@ export const Library: FC = () => {
             return (
               <Card
                 key={index}
-                text={story.reduce(
-                  (accumulator, currentValue) =>
-                    accumulator + currentValue.text,
-                  ""
-                )}
+                story={story}
               />
             );
           })}
         </div>
       )}
 
-      <div className={styles.counters}>{allStories.length}/20</div>
+      <div className={styles.counters}>{allStories.length}</div>
     </div>
   );
 };
