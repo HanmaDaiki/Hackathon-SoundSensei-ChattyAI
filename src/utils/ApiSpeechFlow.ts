@@ -1,15 +1,12 @@
-import { APIResponseTypeGet } from '../interfaces/APIResponseTypeGet';
-import { APIResponseTypePost } from '../interfaces/APIResponseTypePost';
-
-const API_KEY_ID = 'rWfRbX6HsBLzPdQi';
-const API_KEY_SECRET = 'TbYnMRWb2d7rLqgn';
+import { APIResponseTypeGet } from "../interfaces/APIResponseTypeGet";
+import { APIResponseTypePost } from "../interfaces/APIResponseTypePost";
 
 type TranscriptionResultType = 1 | 2 | 3 | 4;
 
 class ApiSpeechFlow {
-  readonly baseURL: string = 'https://api.speechflow.io';
-  readonly queryResultPath: string = '/asr/file/v1/query';
-  readonly postPath = '/asr/file/v1/create';
+  readonly baseURL: string = "https://api.speechflow.io";
+  readonly queryResultPath: string = "/asr/file/v1/query";
+  readonly postPath = "/asr/file/v1/create";
   readonly apiKeyId: string;
   readonly apiKeySecret: string;
 
@@ -21,11 +18,11 @@ class ApiSpeechFlow {
   postTranscription(formData: FormData) {
     console.log(formData);
     return fetch(`${this.baseURL}${this.postPath}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
         keyId: this.apiKeyId,
         keySecret: this.apiKeySecret,
-        mode: 'no-cors',
+        mode: "no-cors",
       },
       body: formData,
     })
@@ -38,15 +35,21 @@ class ApiSpeechFlow {
       });
   }
 
-  queryTranscriptionResult(taskId: string, resultType: TranscriptionResultType) {
-    return fetch(`${this.baseURL}${this.queryResultPath}/?taskId=${taskId}&resultType=${resultType}`, {
-      method: 'GET',
-      headers: {
-        keyId: this.apiKeyId,
-        keySecret: this.apiKeySecret,
-        mode: 'no-cors',
-      },
-    })
+  queryTranscriptionResult(
+    taskId: string,
+    resultType: TranscriptionResultType
+  ) {
+    return fetch(
+      `${this.baseURL}${this.queryResultPath}/?taskId=${taskId}&resultType=${resultType}`,
+      {
+        method: "GET",
+        headers: {
+          keyId: this.apiKeyId,
+          keySecret: this.apiKeySecret,
+          mode: "no-cors",
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         return data as Promise<APIResponseTypeGet>;
@@ -57,4 +60,7 @@ class ApiSpeechFlow {
   }
 }
 
-export const apiSpeechFlow = new ApiSpeechFlow(API_KEY_ID || "", API_KEY_SECRET || "");
+export const apiSpeechFlow = new ApiSpeechFlow(
+  process.env.REACT_APP_SPEECH_FLOW_KEY_ID || "",
+  process.env.REACT_APP_SPEECH_FLOW_SECRET || ""
+);
