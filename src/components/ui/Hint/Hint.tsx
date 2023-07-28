@@ -8,7 +8,6 @@ export const Hint: FC<HintOverlayProps> = ({
   handleHintsOverlay,
 }: HintOverlayProps) => {
   return (
-    // handleHintsOverlay
     <div onClick={handleHintsOverlay} className={styles.hintcontainer}>
       <div className={styles.iconcontainer}>
         <img src={star} alt={"Звезды"} width={43} height={41} />

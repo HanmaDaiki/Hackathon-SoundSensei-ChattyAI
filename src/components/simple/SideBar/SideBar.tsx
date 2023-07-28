@@ -12,7 +12,9 @@ export const SideBar: FC<HintOverlayProps> = ({
   return (
     <aside className={styles.sidebar}>
       <Navigation />
-      <Hint handleHintsOverlay={handleHintsOverlay} />
+      <div className={styles.hint}>
+        <Hint handleHintsOverlay={handleHintsOverlay} />
+      </div>
     </aside>
   );
 };

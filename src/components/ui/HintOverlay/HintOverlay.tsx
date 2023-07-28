@@ -1,4 +1,4 @@
-import { FC, SyntheticEvent } from "react";
+import { FC } from "react";
 import cn from "classnames";
 import { HintOverlayProps } from "../../../interfaces/HintOverlayProps";
 
