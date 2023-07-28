@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import cn from "classnames";
 
 import { setLanguage } from "../store/languageSlice";
-import { Favorites } from "./pages/Favorites/Favorites";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { loadData } from "../store/storySlice";
 import { Library } from "./pages/Library/Library";
@@ -58,7 +57,6 @@ export function App() {
         <SideBar handleHintsOverlay={handleHintsOverlay} />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/favorites" element={<Favorites />} />
           <Route path="/library" element={<Library />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>

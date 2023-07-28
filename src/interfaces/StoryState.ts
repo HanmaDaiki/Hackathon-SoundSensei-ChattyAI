@@ -5,13 +5,11 @@ export interface Message {
 
 export interface AllStoriesMessage {
   text: string;
-  isLiked: boolean;
   image: string;
 }
 
 export interface StoryState {
   currentStory: Message[];
   allStories: AllStoriesMessage[];
-  favoritesStories: AllStoriesMessage[];
   statusApiIsLoading: boolean;
 }

@@ -39,7 +39,7 @@ export const Library: FC = () => {
         </div>
       )}
 
-      <div className={styles.counters}>{allStories.length}</div>
+      <div className={styles.counters}>{allStories.length}/20</div>
     </div>
   );
 };
