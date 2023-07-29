@@ -58,7 +58,7 @@ export function App() {
       >
         <SideBar
           handleHintsOverlay={handleHintsOverlay}
-          isHintLinkVisible={true}
+          isHintLinkVisible={false}
         />
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -69,7 +69,10 @@ export function App() {
       {statusApiIsLoading && <Overlay />}
 
       {isHintOverlayOpened && (
-        <HintOverlay handleHintsOverlay={handleHintsOverlay} />
+        <HintOverlay
+          handleHintsOverlay={handleHintsOverlay}
+          isHintLinkVisible={true}
+        />
       )}
     </>
   );

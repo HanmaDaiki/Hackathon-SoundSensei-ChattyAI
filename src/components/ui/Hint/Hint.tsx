@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
+import cn from "classnames";
 
 import { HintOverlayProps } from "../../../interfaces/HintOverlayProps";
 import { LanguageState } from "../../../interfaces/LanguageState";
@@ -15,18 +16,23 @@ export const Hint: FC<HintOverlayProps> = ({
     (state: { lang: LanguageState }) => state.lang
   );
 
+  console.log(isHintLinkVisible);
+
   return (
-    <>
-      {isHintLinkVisible ? (
-        <div onClick={handleHintsOverlay} className={styles.hintcontainer}>
-          <div className={styles.iconcontainer}>
-            <img src={star} alt={"Звезды"} width={43} height={41} />
-          </div>
-          <span className={styles.hintcaption}>
-            {language[currentLanguage].hint}
-          </span>
-        </div>
-      ) : null}
-    </>
+    <div
+      onClick={handleHintsOverlay}
+      className={
+        isHintLinkVisible
+          ? cn(styles.hintcontainer)
+          : cn(styles.hidden, styles.hintcontainer)
+      }
+    >
+      <div className={styles.iconcontainer}>
+        <img src={star} alt={"Звезды"} width={43} height={41} />
+      </div>
+      <span className={styles.hintcaption}>
+        {language[currentLanguage].hint}
+      </span>
+    </div>
   );
 };
