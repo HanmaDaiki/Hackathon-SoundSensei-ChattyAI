@@ -28,11 +28,11 @@ export const NotFoundPage: FC = () => {
             height={310}
           />
           <div className={styles.textheader}>
-            <b>Я не могу найти эту страницу</b>
+            {language[currentLanguage].notFoundPage}
           </div>
-          <div className={styles.text}>
+          {/* <div className={styles.text}>
             Переходи в Чат, и мы вместе придумаем новую сказку
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

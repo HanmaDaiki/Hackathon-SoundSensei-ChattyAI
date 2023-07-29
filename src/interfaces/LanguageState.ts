@@ -15,15 +15,15 @@ export interface lang {
   hintFavTale: string;
   hintMic: string;
   searchPlaceholder: string;
+  notFoundPage: string;
 }
 
 export interface LanguageState {
-  currentLanguage: "ru" | "en" | "zh" | "ae" | "fr";
+  currentLanguage: "ru" | "en" | "zh" | "fr";
   language: {
     ru: lang;
     en: lang;
     zh: lang;
-    ae: lang;
     fr: lang;
   };
 }
