@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useLocation } from "react-router";
 import { useSelector } from "react-redux";
 import cn from "classnames";
 
@@ -10,19 +11,17 @@ import styles from "./Hint.module.scss";
 
 export const Hint: FC<HintOverlayProps> = ({
   handleHintsOverlay,
-  isHintLinkVisible,
 }: HintOverlayProps) => {
   const { language, currentLanguage } = useSelector(
     (state: { lang: LanguageState }) => state.lang
   );
-
-  console.log(isHintLinkVisible);
+  const location = useLocation();
 
   return (
     <div
       onClick={handleHintsOverlay}
       className={
-        isHintLinkVisible
+        location.pathname === "/"
           ? cn(styles.hintcontainer)
           : cn(styles.hidden, styles.hintcontainer)
       }

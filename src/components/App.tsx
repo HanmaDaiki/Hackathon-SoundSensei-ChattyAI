@@ -56,10 +56,7 @@ export function App() {
           isHintOverlayOpened ? cn(styles.app, styles.blockclicks) : styles.app
         }
       >
-        <SideBar
-          handleHintsOverlay={handleHintsOverlay}
-          isHintLinkVisible={false}
-        />
+        <SideBar handleHintsOverlay={handleHintsOverlay} />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/library" element={<Library />} />
@@ -69,10 +66,7 @@ export function App() {
       {statusApiIsLoading && <Overlay />}
 
       {isHintOverlayOpened && (
-        <HintOverlay
-          handleHintsOverlay={handleHintsOverlay}
-          isHintLinkVisible={true}
-        />
+        <HintOverlay handleHintsOverlay={handleHintsOverlay} />
       )}
     </>
   );

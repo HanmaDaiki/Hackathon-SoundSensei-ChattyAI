@@ -9,7 +9,6 @@ import styles from "./HintOverlay.module.scss";
 
 export const HintOverlay: FC<HintOverlayProps> = ({
   handleHintsOverlay,
-  isHintLinkVisible,
 }: HintOverlayProps) => {
   const handleClick = () => {
     localStorage.setItem("firstTime", "false");
