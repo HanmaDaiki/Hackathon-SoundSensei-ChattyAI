@@ -11,7 +11,7 @@
   
 ### Step 2.
  
-Replace .envexampl with .env and paste your keys into .env
+Replace .envexample with .env and paste your keys into .env
 
 ### Step 3.
 
