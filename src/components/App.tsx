@@ -26,7 +26,9 @@ export function App() {
     (state: { story: StoryState }) => state.story
   );
   const dispatch = useAppDispatch();
-  const [isHintOverlayOpened, setIsHintOverlayOpened] = useState(localStorage.getItem("firstTime") !== 'false' ? true : false);
+  const [isHintOverlayOpened, setIsHintOverlayOpened] = useState(
+    localStorage.getItem("firstTime") !== "false" ? true : false
+  );
   const navigate = useNavigate();
 
   const handleHintsOverlay = () => {
@@ -46,7 +48,7 @@ export function App() {
     Mp3Recorder.stop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   return (
     <>
       <div

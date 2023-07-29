@@ -24,7 +24,8 @@ const initialState: LanguageState = {
         "Click on the heart, and the fairy tale will remain in your Library",
       hintMic:
         "To create a fairy tale, click the button with the asterisk and speak",
-      searchPlaceholder: 'What are we going to look for?'
+      searchPlaceholder: "What are we going to look for?",
+      notFoundPage: "I can't find a page",
     },
     ru: {
       storyteller: "Сказочник",
@@ -44,7 +45,8 @@ const initialState: LanguageState = {
       hintNewTale: "Придумаем другую сказку? Нажми чтобы очистить чат",
       hintFavTale: "Нажми на сердечко, и сказка сохранится в твоей Библиотеке",
       hintMic: "Чтобы создать сказку зажми кнопку со звёздочкой и говори",
-      searchPlaceholder: 'Что будем искать?'
+      searchPlaceholder: "Что будем искать?",
+      notFoundPage: "Я не могу найти страницу",
     },
     zh: {
       storyteller: "说故事的人",
@@ -62,28 +64,8 @@ const initialState: LanguageState = {
       hintNewTale: "让我们想出另一个童话呢？点击清洁聊天",
       hintFavTale: "单击心脏，童话故事将留在您的图书馆中",
       hintMic: "要创建一个童话故事，请用星号单击按钮然后说话",
-      searchPlaceholder: '我们要寻找什么？'
-
-    },
-    ae: {
-      storyteller: "القصص",
-      chat: "محادثة ",
-      library: "مكتبة",
-      favorites: "المفضلة",
-      helloMessage: "مرحبًا! اسمي رواة القصص. يمكنني الخروج وأخبر حكاية خرافية",
-      inputPlaceholder: "ما هي الحكاية الخيالية التي تريدها؟",
-      inputPlaceholderAwaiting: "الآن سوف أتوصل إلى شيء ...",
-      keyWords: "أخبر الحكاية الخيالية عن",
-      miniStory: "أخبر حكاية خرافية في جملة واحدة",
-      emptyLib:
-        "لم نتوصل بعد إلى قصة خرافية واحدةن الوقت لإنشائها في الدردشة :)",
-      emptyFav: "Отметь сердечком любую сказку,\n и она появится здесь",
-      hint: "تَلمِيح",
-      hintNewTale: "دعنا نتوصل إلى قصة خرافية أخرى؟ انقر لتنظيف الدردشة",
-      hintFavTale: "انقر على القلب ، وستبقى الحكاية الخيالية في 'مكتبتك'",
-      hintMic: "لإنشاء قصة خرافية ، انقر فوق الزر مع العلامة النجمية والتحدث",
-      searchPlaceholder: ''
-
+      searchPlaceholder: "我们要寻找什么？",
+      notFoundPage: "我找不到页面",
     },
     fr: {
       storyteller: "Conteur",
@@ -106,7 +88,8 @@ const initialState: LanguageState = {
         "Cliquez sur le cœur et le conte de fées restera dans votre Bibliothèque",
       hintMic:
         "Pour créer un conte de fées, cliquez sur le bouton avec l'astérisque et parlez",
-      searchPlaceholder: "Qu'allons-nous rechercher?"
+      searchPlaceholder: "Qu'allons-nous rechercher?",
+      notFoundPage: "Je ne trouve pas de page",
     },
   },
 };
