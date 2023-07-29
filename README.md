@@ -27,6 +27,12 @@ https://hackathon-sound-sensei-chatty-ai.vercel.app/
 
 The Storyteller is an AI-based voice assistant specializing in fairy tales. The storyteller is called upon to solve the problem of the complexity of organizing a child's leisure time, like a father who is tired after work. And thanks to its functionality, strengthen family, parent-child bond.
 
+## Current Features
+
+- Voice input
+- 4 languges support (Russian, English, French, Chinese)
+- Adding favourites to library
+
 ## Next features
 
 - Arabic language support
