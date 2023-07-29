@@ -8,6 +8,7 @@ const initialState: StoryState = {
   currentStory: [],
   allStories: [],
   statusApiIsLoading: false,
+  generation: 0,
 };
 
 export const getOpenAiStory = createAsyncThunk(
@@ -41,6 +42,7 @@ const storySlice = createSlice({
       state.currentStory = JSON.parse(
         localStorage.getItem("currentStory") || `[]`
       );
+      state.generation = JSON.parse(localStorage.getItem("generation") || "0");
     },
 
     addUserMessageToCurrentStory: (state, action) => {
@@ -67,7 +69,8 @@ const storySlice = createSlice({
           image: imagesCard[generateRandomNumber(imagesCard.length)],
         });
         state.currentStory = [];
-
+        state.generation = 0;
+        localStorage.setItem("generation", JSON.stringify(state.generation));
         localStorage.setItem("allStories", JSON.stringify(state.allStories));
         localStorage.setItem("currentStory", JSON.stringify([]));
       }
@@ -88,11 +91,18 @@ const storySlice = createSlice({
     updateStatusApiIsLoading(state, action) {
       state.statusApiIsLoading = action.payload;
     },
+
+    resetGenaration(state) {
+      state.generation = 0;
+      localStorage.setItem("generation", JSON.stringify(state.generation));
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getOpenAiStory.fulfilled, (state, action) => {
       if (typeof action.payload === "string") {
         state.currentStory.push({ owner: "bot", text: action.payload });
+        state.generation += 1;
+        localStorage.setItem("generation", JSON.stringify(state.generation));
         localStorage.setItem(
           "currentStory",
           JSON.stringify(state.currentStory)
@@ -110,5 +120,6 @@ export const {
   updateStatusApiIsLoading,
   saveStory,
   deleteSavedStory,
+  resetGenaration,
 } = storySlice.actions;
 export const storyReducer = storySlice.reducer;
