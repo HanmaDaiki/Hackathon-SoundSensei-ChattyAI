@@ -22,6 +22,7 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+  transform: translateY(-21px);
 
   &:disabled {
     animation: none;
@@ -36,7 +37,6 @@
     animation-iteration-count: infinite;
     animation-timing-function: steps(1, end);
   }
-
 }
 
 .mic_loader {
