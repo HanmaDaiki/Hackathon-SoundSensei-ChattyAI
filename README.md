@@ -2,18 +2,23 @@
 
 ## Install
 
-### Step 1.
+### Before Installation
+
+Install Node JS: https://nodejs.org
+Install Git: https://git-scm.com/downloads
+
+### Step 1
 
 ```
   $ git clone https://github.com/HanmaDaiki/Hackathon-SoundSensei-ChattyAI
   $ cd Hackathon-SoundSensei-ChattyAI
 ```
   
-### Step 2.
+### Step 2
  
 Replace .envexample with .env and paste your keys into .env
 
-### Step 3.
+### Step 3
 
 ```
 $ npm run start
