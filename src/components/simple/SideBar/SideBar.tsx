@@ -8,12 +8,16 @@ import { HintOverlayProps } from "../../../interfaces/HintOverlayProps";
 
 export const SideBar: FC<HintOverlayProps> = ({
   handleHintsOverlay,
+  isHintLinkVisible,
 }: HintOverlayProps) => {
   return (
     <aside className={styles.sidebar}>
       <Navigation />
       <div className={styles.hint}>
-        <Hint handleHintsOverlay={handleHintsOverlay} />
+        <Hint
+          handleHintsOverlay={handleHintsOverlay}
+          isHintLinkVisible={isHintLinkVisible}
+        />
       </div>
     </aside>
   );
