@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { AllStoriesMessage } from "../../../interfaces/StoryState";
@@ -12,6 +12,24 @@ export const Card: FC<IProps> = ({ story }) => {
   const [isOpen, toggleOpen] = useState(false);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if(isOpen) {
+      window.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') {
+          toggleOpen(false);
+        }
+      });
+    }
+
+    if(!isOpen) {
+      window.removeEventListener('keydown', (e) => {
+        if(e.key === 'Escape') {
+          toggleOpen(false);
+        }
+      });
+    }
+  }, [isOpen])
 
   return (
     <div className={styles.card} onClick={() => toggleOpen(true)}>
