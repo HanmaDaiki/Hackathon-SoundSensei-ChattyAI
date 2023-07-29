@@ -12,4 +12,5 @@ export interface StoryState {
   currentStory: Message[];
   allStories: AllStoriesMessage[];
   statusApiIsLoading: boolean;
+  generation: number;
 }

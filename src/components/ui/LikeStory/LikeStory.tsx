@@ -1,26 +1,42 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { StoryState } from "../../../interfaces/StoryState";
 import styles from "./LikeStory.module.scss";
-import { saveStory } from "../../../store/storySlice";
+import { resetGenaration, saveStory } from "../../../store/storySlice";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
 
 export const LikeStory: FC = () => {
-  const { statusApiIsLoading } = useSelector(
+  const { statusApiIsLoading, generation } = useSelector(
     (state: { story: StoryState }) => state.story
   );
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    if(generation > 3) {
+      setTimeout(() => {
+        dispatch(resetGenaration());
+      }, 3000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [generation])
+
   return (
-    <button
-      disabled={statusApiIsLoading}
-      className={styles.like}
-      onClick={() => {
-        dispatch(saveStory());
-      }}
-    >
-      <div className={styles.img}></div>
-    </button>
+    <div className={styles.container}>
+      <button
+        disabled={statusApiIsLoading}
+        className={styles.like}
+        onClick={() => {
+          dispatch(saveStory());
+        }}
+      >
+        <div className={styles.img}></div>
+      </button>
+      {generation > 3 && (
+        <div className={styles.notifycation} onClick={() => dispatch(resetGenaration())}>
+          Нажми на сердечко, и сказка сохранится в твоей Библиотеке
+        </div>
+      )}
+    </div>
   );
 };
