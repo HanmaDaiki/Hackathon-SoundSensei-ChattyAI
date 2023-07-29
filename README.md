@@ -36,6 +36,7 @@ https://hackathon-sound-sensei-chatty-ai.vercel.app/
 - Redux-toolkit
 - Sass-modules
 - HTML5
+- Vercel
 - Git
 
 ## App
