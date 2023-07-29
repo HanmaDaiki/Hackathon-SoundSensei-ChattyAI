@@ -23,6 +23,19 @@ $ npm run start
 
 https://hackathon-sound-sensei-chatty-ai.vercel.app/
 
+## About App
+
+The Storyteller is an AI-based voice assistant specializing in fairy tales. The storyteller is called upon to solve the problem of the complexity of organizing a child's leisure time, like a father who is tired after work. And thanks to its functionality, strengthen family, parent-child bond.
+
+## Next features
+
+- Arabic language support
+- Settings
+- Prompt presets
+- Voiceover of fairy tales
+- Dark theme
+- User account
+
 ## Technology stack
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![SASS](https://img.shields.io/badge/SASS%20-hotpink.svg?&style=for-the-badge&logo=SASS&logoColor=white)
@@ -39,5 +52,18 @@ https://hackathon-sound-sensei-chatty-ai.vercel.app/
 - Vercel
 - Git
 
-## App
-![image](https://github.com/HanmaDaiki/Hackathon-SoundSensei-ChattyAI/assets/58334160/89c822db-6d02-4260-80d0-84673d5505f8)
+## Team
+
+### Project Manager
+
+- [Stanislav Voronov](https://t.me/cap_st)
+
+### Design
+
+- [Polina Timerina](https://t.me/ptmrn)
+- [Max Polatov](https://t.me/desikobee)
+
+### Frontend
+
+- [Alexander Merzlikin](https://t.me/Daikihanma)
+- [Arkadiy Shchapov](https://t.me/arkady_vl)
