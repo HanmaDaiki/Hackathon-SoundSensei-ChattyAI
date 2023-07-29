@@ -20,10 +20,19 @@ export const NotFoundPage: FC = () => {
     <div className={styles["not-found"]}>
       <Header from={language[currentLanguage].storyteller} />
       <div className={styles.container}>
-        <img src={notfoundpic} alt="Not found page" width={232} height={310} />
-        <div className={styles.text}>
-          Я не могу найти эту страницу Переходи в Чат, и мы вместе придумаем
-          новую сказку
+        <div className={styles.wrapper}>
+          <img
+            src={notfoundpic}
+            alt="Not found page"
+            width={232}
+            height={310}
+          />
+          <div className={styles.textheader}>
+            <b>Я не могу найти эту страницу</b>
+          </div>
+          <div className={styles.text}>
+            Переходи в Чат, и мы вместе придумаем новую сказку
+          </div>
         </div>
       </div>
     </div>
