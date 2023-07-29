@@ -14,6 +14,7 @@ export interface lang {
   hintNewTale: string;
   hintFavTale: string;
   hintMic: string;
+  searchPlaceholder: string;
 }
 
 export interface LanguageState {

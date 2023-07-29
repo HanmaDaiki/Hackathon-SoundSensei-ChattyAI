@@ -24,6 +24,7 @@ const initialState: LanguageState = {
         "Click on the heart, and the fairy tale will remain in your Library",
       hintMic:
         "To create a fairy tale, click the button with the asterisk and speak",
+      searchPlaceholder: 'What are we going to look for?'
     },
     ru: {
       storyteller: "Сказочник",
@@ -43,6 +44,7 @@ const initialState: LanguageState = {
       hintNewTale: "Придумаем другую сказку? Нажми чтобы очистить чат",
       hintFavTale: "Нажми на сердечко, и сказка сохранится в твоей Библиотеке",
       hintMic: "Чтобы создать сказку зажми кнопку со звёздочкой и говори",
+      searchPlaceholder: 'Что будем искать?'
     },
     zh: {
       storyteller: "说故事的人",
@@ -60,6 +62,8 @@ const initialState: LanguageState = {
       hintNewTale: "让我们想出另一个童话呢？点击清洁聊天",
       hintFavTale: "单击心脏，童话故事将留在您的图书馆中",
       hintMic: "要创建一个童话故事，请用星号单击按钮然后说话",
+      searchPlaceholder: '我们要寻找什么？'
+
     },
     ae: {
       storyteller: "القصص",
@@ -78,6 +82,8 @@ const initialState: LanguageState = {
       hintNewTale: "دعنا نتوصل إلى قصة خرافية أخرى؟ انقر لتنظيف الدردشة",
       hintFavTale: "انقر على القلب ، وستبقى الحكاية الخيالية في 'مكتبتك'",
       hintMic: "لإنشاء قصة خرافية ، انقر فوق الزر مع العلامة النجمية والتحدث",
+      searchPlaceholder: ''
+
     },
     fr: {
       storyteller: "Conteur",
@@ -100,6 +106,7 @@ const initialState: LanguageState = {
         "Cliquez sur le cœur et le conte de fées restera dans votre Bibliothèque",
       hintMic:
         "Pour créer un conte de fées, cliquez sur le bouton avec l'astérisque et parlez",
+      searchPlaceholder: "Qu'allons-nous rechercher?"
     },
   },
 };

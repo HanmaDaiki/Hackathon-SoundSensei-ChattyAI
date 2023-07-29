@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+
   .customSelect {
     position: absolute;
     top: 60px;
@@ -10,6 +11,8 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+
+    cursor: pointer;
   }
 
   .options {
