@@ -22,10 +22,10 @@ export const HintOverlay: FC<HintOverlayProps> = ({
   return (
     <div onClick={handleClick} className={styles.overlaycontainer}>
       <div className={styles.hintoverlay}>
-        <div className={cn(styles.hintbubble, styles.text, styles.small1)}>
+        <div className={cn(styles.hintbubble, styles.text, styles.small1, currentLanguage === "zh" && styles.zh)}>
           {language[currentLanguage].hintNewTale}
         </div>
-        <div className={cn(styles.hintbubble, styles.text, styles.small2)}>
+        <div className={cn(styles.hintbubble, styles.text, styles.small2, currentLanguage === "zh" && styles.zh)}>
           {language[currentLanguage].hintFavTale}
         </div>
         <div className={cn(styles.hintbubble, styles.text, styles.big)}>

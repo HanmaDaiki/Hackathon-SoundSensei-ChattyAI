@@ -23,7 +23,7 @@ const initialState: LanguageState = {
       hintFavTale:
         "Click on the heart, and the fairy tale will remain in your Library",
       hintMic:
-        "To create a fairy tale, click the button with the asterisk and speak",
+        "To create a fairy tale, click the button \n with the asterisk and speak",
       searchPlaceholder: "What are we going to look for?",
       notFoundPage: "I can't find a page",
     },
