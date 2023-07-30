@@ -16,7 +16,7 @@ export const LikeStory: FC = () => {
     if(generation > 3) {
       setTimeout(() => {
         dispatch(resetGenaration());
-      }, 3000);
+      }, 5000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [generation])
@@ -32,7 +32,7 @@ export const LikeStory: FC = () => {
       >
         <div className={styles.img}></div>
       </button>
-      {generation > 3 && (
+      {generation > 2 && (
         <div className={styles.notifycation} onClick={() => dispatch(resetGenaration())}>
           Нажми на сердечко, и сказка сохранится в твоей Библиотеке
         </div>
