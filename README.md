@@ -17,7 +17,7 @@ Install Git: https://git-scm.com/downloads
   
 ### Step 2
  
-Replace .envexample with .env and paste your keys into .env
+Replace .envexample to .env and paste your keys into .env
 
 ### Step 3
 
