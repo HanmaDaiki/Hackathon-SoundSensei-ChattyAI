@@ -11,7 +11,7 @@
     // padding: 28px 32px;
     height: 97px;
     text-decoration: none;
-    font-family: "Lena";
+    font-family: var(--accent-font);
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -25,13 +25,12 @@
 
     &.active {
       background-color: #eff2ff;
-      // color: #b795ff;
 
       border-radius: 0px 32px 32px 0px;
     }
 
     &.link {
-      color: #f8f8fd;
+      color: var(--main-bg-color);
     }
 
     &.lastlink {
@@ -39,7 +38,7 @@
     }
 
     &.pending {
-      color: #f8f8fd;
+      color: var(--main-bg-color);
     }
   }
 }
