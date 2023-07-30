@@ -15,14 +15,17 @@
 
 .mic {
   background-image: url(../../../images/mic.png);
-  width: 178px;
-  height: 160px;
+  width: 117px;
+  height: 117px;
+  border-radius: 50%;
   background-position: center;
   background-repeat: no-repeat;
   border: none;
-  background-color: transparent;
+  background-color: #f8f8fd;
   cursor: pointer;
   transform: translateY(-21px);
+  position: absolute;
+  bottom: 0;
 
   &:disabled {
     animation: none;
@@ -30,6 +33,10 @@
   }
 
   &:active {
+    border-radius: 0;
+    background-color: transparent;
+    width: 178px;
+    height: 160px;
     background-image: url(../../../images/mic1.png);
     animation-name: animate-mic;
     animation-duration: 0.65s;
@@ -41,22 +48,9 @@
 
 .mic_loader {
   background-image: url(../../../images/mic.png);
-  width: 178px;
-  height: 160px;
   background-position: center;
   background-repeat: no-repeat;
   border: none;
   background-color: transparent;
-  cursor: pointer;
-}
-
-.mic_loader {
-  background-image: url(../../../images/mic.png);
-  width: 178px;
-  height: 160px;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
+  pointer-events: none;
 }

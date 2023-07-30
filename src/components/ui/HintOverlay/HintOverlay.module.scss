@@ -8,39 +8,41 @@
   cursor: pointer;
 }
 .hintoverlay {
-  width: 360px;
   position: absolute;
-  bottom: 53px;
-  right: 129px;
   z-index: 30;
+  display: flex;
+  flex-direction: column;
+  right: 65px;
+  bottom: 78px;
 }
 
 .hintbubble {
   border-radius: 32px;
   border: 1px solid #b795ff;
   background: #eff2ff;
-  padding: 16px 24px 16px 24px;
-
+  padding: 16px 70px 16px 24px;
   color: #7386eb;
   text-align: center;
   font-family: "SF Pro Display", sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   font-style: normal;
   font-weight: 400;
-  line-height: 23px; /* 127.778% */
+  line-height: 18px; /* 127.778% */
   letter-spacing: 0.18px;
 }
 
-.newtalehint {
-  margin-top: 10px;
+.small1 {
+  margin-bottom: 15px;
 }
 
-.michint {
-  width: 281px;
-  margin: 29px 0 0 0;
-  padding: 24px;
-  height: 67px;
-  //   border-right: 1px solid transparent;
-  //   border-top-right-radius: 0;
-  //   border-bottom-right-radius: 0;
+.small2 {
+  margin-bottom: 32px;
+}
+
+.big {
+  padding: 24px 70px 24px 24px;
+}
+
+.text {
+  width: 285px;
 }

@@ -1,10 +1,13 @@
 .tools {
   position: absolute;
-  bottom: 11px;
-  right: 10px;
-  z-index: 4;
+  bottom: 40px;
+  right: 32px;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
+  overflow:visible;
+  width: 117px;
+  height: 305px;
 }

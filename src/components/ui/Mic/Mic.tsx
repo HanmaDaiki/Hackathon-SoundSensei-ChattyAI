@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useEffect, useState } from "react";
+import cn from 'classnames';
 
 import {
   addUserMessageToCurrentStory,
@@ -138,7 +139,7 @@ export const Mic: FC = () => {
   return (
     <>
       {statusApiIsLoading ? (
-        <div className={styles.mic_loader}></div>
+        <div className={cn(styles.mic, styles.mic_loader)}></div>
       ) : (
         <button
           className={styles.mic}
