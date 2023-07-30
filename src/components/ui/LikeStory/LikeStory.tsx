@@ -9,13 +9,14 @@ import { LanguageState } from "../../../interfaces/LanguageState";
 
 export const LikeStory: FC = () => {
   const {  language,  currentLanguage } = useSelector(
-    (state: { story: LanguageState }) => state.story
+    (state: { lang: LanguageState }) => state.lang
   );
   const { statusApiIsLoading, generation } = useSelector(
     (state: { story: StoryState }) => state.story
   );
   const dispatch = useAppDispatch();
 
+  console.log(language[currentLanguage]);
   useEffect(() => {
     if(generation > 2) {
       setTimeout(() => {
