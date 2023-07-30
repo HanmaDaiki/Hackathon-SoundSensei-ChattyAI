@@ -5,8 +5,12 @@ import { StoryState } from "../../../interfaces/StoryState";
 import styles from "./LikeStory.module.scss";
 import { resetGenaration, saveStory } from "../../../store/storySlice";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { LanguageState } from "../../../interfaces/LanguageState";
 
 export const LikeStory: FC = () => {
+  const {  language,  currentLanguage } = useSelector(
+    (state: { story: LanguageState }) => state.story
+  );
   const { statusApiIsLoading, generation } = useSelector(
     (state: { story: StoryState }) => state.story
   );
@@ -34,7 +38,7 @@ export const LikeStory: FC = () => {
       </button>
       {generation > 2 && (
         <div className={styles.notifycation} onClick={() => dispatch(resetGenaration())}>
-          Нажми на сердечко, и сказка сохранится в твоей Библиотеке
+          {language[currentLanguage].hintFavTale}
         </div>
       )}
     </div>
