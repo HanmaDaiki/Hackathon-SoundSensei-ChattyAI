@@ -13,17 +13,18 @@ export const LikeStory: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if(generation > 2) {
+    if (generation > 2) {
       setTimeout(() => {
         dispatch(resetGenaration());
       }, 5000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [generation])
+  }, [generation]);
 
   return (
     <div className={styles.container}>
       <button
+        aria-label="save story"
         disabled={statusApiIsLoading}
         className={styles.like}
         onClick={() => {
@@ -33,7 +34,10 @@ export const LikeStory: FC = () => {
         <div className={styles.img}></div>
       </button>
       {generation > 2 && (
-        <div className={styles.notifycation} onClick={() => dispatch(resetGenaration())}>
+        <div
+          className={styles.notifycation}
+          onClick={() => dispatch(resetGenaration())}
+        >
           Нажми на сердечко, и сказка сохранится в твоей Библиотеке
         </div>
       )}

@@ -60,7 +60,11 @@ export const MainPage: FC = () => {
           onChange={(elser) => setPrompt(elser.target.value)}
           value={prompt}
         />
-        <button disabled={statusApiIsLoading} type="submit"></button>
+        <button
+          aria-label="search for a fairy tale"
+          disabled={statusApiIsLoading}
+          type="submit"
+        ></button>
       </form>
       <Tools />
     </div>

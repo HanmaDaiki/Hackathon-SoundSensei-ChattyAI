@@ -15,6 +15,7 @@ export const Next: FC = () => {
 
   return (
     <button
+      aria-label="next story"
       disabled={statusApiIsLoading}
       className={styles.next}
       onClick={() => {

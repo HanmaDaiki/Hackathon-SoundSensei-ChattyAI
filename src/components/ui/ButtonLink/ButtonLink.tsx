@@ -1,7 +1,7 @@
-import { FC, PropsWithChildren } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC, PropsWithChildren } from "react";
+import { useNavigate } from "react-router-dom";
 
-import styles from './ButtonLink.module.scss';
+import styles from "./ButtonLink.module.scss";
 
 interface IProps extends PropsWithChildren {
   redirectTo: string;
@@ -9,5 +9,13 @@ interface IProps extends PropsWithChildren {
 export const ButtonLink: FC<IProps> = ({ redirectTo, children }) => {
   const navigate = useNavigate();
 
-  return <button className={styles.button} onClick={() => navigate(redirectTo)}>{ children }</button>;
+  return (
+    <button
+      aria-label="redirect to"
+      className={styles.button}
+      onClick={() => navigate(redirectTo)}
+    >
+      {children}
+    </button>
+  );
 };

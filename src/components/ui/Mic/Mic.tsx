@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useEffect, useState } from "react";
-import cn from 'classnames';
+import cn from "classnames";
 
 import {
   addUserMessageToCurrentStory,
@@ -13,7 +13,7 @@ import { apiSpeechFlow } from "../../../utils/ApiSpeechFlow";
 import { useSelector } from "react-redux";
 import { StoryState } from "../../../interfaces/StoryState";
 import styles from "./Mic.module.scss";
-import { LanguageState } from '../../../interfaces/LanguageState';
+import { LanguageState } from "../../../interfaces/LanguageState";
 
 const MicRecorderToMp3 = require("mic-recorder-to-mp3");
 
@@ -29,25 +29,32 @@ export const Mic: FC = () => {
   const { statusApiIsLoading } = useSelector(
     (state: { story: StoryState }) => state.story
   );
-  const { language, currentLanguage } = useSelector((state: { lang: LanguageState }) => state.lang);
-
+  const { language, currentLanguage } = useSelector(
+    (state: { lang: LanguageState }) => state.lang
+  );
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (transResult.length !== 0 && transResult !== 'ClearString') {
-      dispatch(getOpenAiStory({ prompt: transResult, keyWords: language[currentLanguage].keyWords })).finally(() =>
-        dispatch(updateStatusApiIsLoading(false))
-      );
+    if (transResult.length !== 0 && transResult !== "ClearString") {
+      dispatch(
+        getOpenAiStory({
+          prompt: transResult,
+          keyWords: language[currentLanguage].keyWords,
+        })
+      ).finally(() => dispatch(updateStatusApiIsLoading(false)));
       dispatch(addUserMessageToCurrentStory(transResult));
       dispatch(saveCurrentStory());
       setTransResult("");
       setFile(null);
-    } 
-    if (transResult === 'ClearString') {
-      dispatch(getOpenAiStory({ prompt: '', keyWords: language[currentLanguage].miniStory })).finally(() =>
-        dispatch(updateStatusApiIsLoading(false))
-      );
+    }
+    if (transResult === "ClearString") {
+      dispatch(
+        getOpenAiStory({
+          prompt: "",
+          keyWords: language[currentLanguage].miniStory,
+        })
+      ).finally(() => dispatch(updateStatusApiIsLoading(false)));
       setTransResult("");
       dispatch(addUserMessageToCurrentStory(""));
       dispatch(saveCurrentStory());
@@ -88,8 +95,8 @@ export const Mic: FC = () => {
       console.log("result: ", res);
       if (res && res.code === 11000) {
         setTransResult(res.result);
-        if (res.result === '') {
-          setTransResult('ClearString');
+        if (res.result === "") {
+          setTransResult("ClearString");
         }
         clearInterval(interval);
         setIsSubmissionOk(false);
@@ -105,9 +112,12 @@ export const Mic: FC = () => {
         clearInterval(interval);
         setIsSubmissionOk(false);
         dispatch(addUserMessageToCurrentStory(""));
-        dispatch(getOpenAiStory({ prompt: "", keyWords: language[currentLanguage].miniStory })).finally(() =>
-          dispatch(updateStatusApiIsLoading(false))
-        );
+        dispatch(
+          getOpenAiStory({
+            prompt: "",
+            keyWords: language[currentLanguage].miniStory,
+          })
+        ).finally(() => dispatch(updateStatusApiIsLoading(false)));
       }
     });
   };
@@ -121,7 +131,7 @@ export const Mic: FC = () => {
 
   const handleSubmitRecording = async () => {
     if (!file) return;
-    const formData = createFormData(currentLanguage, file);  
+    const formData = createFormData(currentLanguage, file);
     apiSpeechFlow.postTranscription(formData).then((res) => {
       console.log("result: ", res);
       if (res && res.code === 10000) {
@@ -142,6 +152,7 @@ export const Mic: FC = () => {
         <div className={cn(styles.mic, styles.mic_loader)}></div>
       ) : (
         <button
+          aria-label="start recording"
           className={styles.mic}
           onMouseDown={() => startRecording()}
           onMouseUp={async () => {
