@@ -13,7 +13,7 @@ export const LikeStory: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if(generation > 3) {
+    if(generation > 2) {
       setTimeout(() => {
         dispatch(resetGenaration());
       }, 5000);
