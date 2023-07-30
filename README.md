@@ -22,6 +22,7 @@ Replace .envexample to .env and paste your keys into .env
 ### Step 3
 
 ```
+$ npm install
 $ npm run start
 ```
 
