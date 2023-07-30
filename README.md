@@ -14,9 +14,9 @@ Install Git: https://git-scm.com/downloads
   $ git clone https://github.com/HanmaDaiki/Hackathon-SoundSensei-ChattyAI
   $ cd Hackathon-SoundSensei-ChattyAI
 ```
-  
+
 ### Step 2
- 
+
 Replace .envexample to .env and paste your keys into .env
 
 ### Step 3
@@ -37,8 +37,8 @@ The Storyteller is an AI-based voice assistant specializing in fairy tales. The 
 ## Current Features
 
 - Voice input
-- 4 languges support (Russian, English, French, Chinese)
-- Adding favourites to library
+- 4 languages support (Russian, English, French, Chinese)
+- Adding favorites to library
 
 ## Next features
 
@@ -51,15 +51,16 @@ The Storyteller is an AI-based voice assistant specializing in fairy tales. The 
 
 ## API
 
-OpenAI - you need to add an API key to env, according to the instructions from the installation
+OpenAI - you need to add an API key to env according to the instructions from the installation
 
-SpeechFlow - you need to add an Key ID and Secret to env, according to the instructions from the installation
+SpeechFlow - you need to add a Key ID and Secret to env according to the instructions from the installation
 
 ## Archive Link
 
 https://github.com/HanmaDaiki/Hackathon-SoundSensei-ChattyAI/archive/refs/heads/main.zip
 
 ## Technology stack
+
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![SASS](https://img.shields.io/badge/SASS%20-hotpink.svg?&style=for-the-badge&logo=SASS&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)  
@@ -83,7 +84,6 @@ https://github.com/HanmaDaiki/Hackathon-SoundSensei-ChattyAI/archive/refs/heads/
 ![image](https://github.com/HanmaDaiki/Hackathon-SoundSensei-ChattyAI/assets/58334160/2ded319b-471d-42dc-850a-3e0dc6705b7a)
 ![image](https://github.com/HanmaDaiki/Hackathon-SoundSensei-ChattyAI/assets/58334160/30e2ce14-5efa-4f36-a726-0dfabba310cf)
 
-
 ## Team
 
 ### Project Manager
@@ -94,7 +94,6 @@ https://github.com/HanmaDaiki/Hackathon-SoundSensei-ChattyAI/archive/refs/heads/
 
 - [Polina Timerina](https://t.me/ptmrn)
 - [Max Polatov](https://t.me/desikobee)
-
 
 ### Frontend
 

@@ -8,7 +8,7 @@ import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { LanguageState } from "../../../interfaces/LanguageState";
 
 export const LikeStory: FC = () => {
-  const {  language,  currentLanguage } = useSelector(
+  const { language, currentLanguage } = useSelector(
     (state: { lang: LanguageState }) => state.lang
   );
   const { statusApiIsLoading, generation } = useSelector(
@@ -18,13 +18,13 @@ export const LikeStory: FC = () => {
 
   console.log(language[currentLanguage]);
   useEffect(() => {
-    if(generation > 2) {
+    if (generation > 2) {
       setTimeout(() => {
         dispatch(resetGenaration());
       }, 5000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [generation])
+  }, [generation]);
 
   return (
     <div className={styles.container}>
@@ -38,7 +38,10 @@ export const LikeStory: FC = () => {
         <div className={styles.img}></div>
       </button>
       {generation > 2 && (
-        <div className={styles.notifycation} onClick={() => dispatch(resetGenaration())}>
+        <div
+          className={styles.notifycation}
+          onClick={() => dispatch(resetGenaration())}
+        >
           {language[currentLanguage].hintFavTale}
         </div>
       )}

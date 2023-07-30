@@ -14,22 +14,22 @@ export const Card: FC<IProps> = ({ story }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if(isOpen) {
-      window.addEventListener('keydown', (e) => {
-        if(e.key === 'Escape') {
+    if (isOpen) {
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
           toggleOpen(false);
         }
       });
     }
 
-    if(!isOpen) {
-      window.removeEventListener('keydown', (e) => {
-        if(e.key === 'Escape') {
+    if (!isOpen) {
+      window.removeEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
           toggleOpen(false);
         }
       });
     }
-  }, [isOpen])
+  }, [isOpen]);
 
   return (
     <div className={styles.card} onClick={() => toggleOpen(true)}>
@@ -41,6 +41,7 @@ export const Card: FC<IProps> = ({ story }) => {
             e.stopPropagation();
             dispatch(deleteSavedStory(story.text));
           }}
+          aria-label="delete saved story"
           className={styles.delete}
         ></button>
       </div>

@@ -1,9 +1,15 @@
-@import './vendor/normalize.scss';
-@import './vendor/fonts/fonts.scss';
+@import "./vendor/normalize.scss";
+@import "./vendor/fonts/fonts.scss";
 
 * {
   margin: 0;
   padding: 0;
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: "SF Pro Display", sans-serif;
   font-weight: 400;
+}
+
+:root {
+  --main-bg-color: #f8f8fd;
+  --main-accent-color: #7386eb;
+  --accent-font: "Lena";
 }

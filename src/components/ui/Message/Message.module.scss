@@ -22,8 +22,8 @@
   color: #5e72e1;
 
   &.bot {
-    background: #7386eb;
-    color: #f8f8fd;
+    background: var(--main-accent-color);
+    color: var(--main-bg-color);
   }
 }
 

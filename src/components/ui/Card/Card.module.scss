@@ -17,7 +17,7 @@
     font-weight: 400;
     line-height: 23px; /* 127.778% */
     letter-spacing: 0.18px;
-    color: #7386eb;
+    color: var(--main-accent-color);
     width: 385px;
     height: 69px;
     text-overflow: ellipsis;
@@ -78,7 +78,8 @@
     .content {
       box-sizing: border-box;
       padding: 60px 60px 80px;
-      background-color: #f8f8fd;
+      background-color: var(--main-bg-color);
+
       border-radius: 32px;
       width: 55vw;
       height: 85vh;
@@ -104,12 +105,12 @@
         &::-webkit-scrollbar {
           width: 7px;
         }
-      
+
         &::-webkit-scrollbar-thumb {
           background: #5e72e1;
           border-radius: 7px;
         }
-      
+
         &::-webkit-scrollbar-track {
           background: #e0e6ff;
           border-radius: 7px;
