@@ -29,7 +29,6 @@ export const LikeStory: FC = () => {
   return (
     <div className={styles.container}>
       <button
-        aria-label="save story"
         disabled={statusApiIsLoading}
         className={styles.like}
         onClick={() => {
@@ -43,8 +42,6 @@ export const LikeStory: FC = () => {
           className={styles.notifycation}
           onClick={() => dispatch(resetGenaration())}
         >
-          Нажми на сердечко, и сказка сохранится в твоей Библиотеке
-        <div className={styles.notifycation} onClick={() => dispatch(resetGenaration())}>
           {language[currentLanguage].hintFavTale}
         </div>
       )}
