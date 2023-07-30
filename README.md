@@ -51,6 +51,7 @@ The Storyteller is an AI-based voice assistant specializing in fairy tales. The 
 ## API
 
 OpenAI - you need to add an API key to env, according to the instructions from the installation
+
 SpeechFlow - you need to add an Key ID and Secret to env, according to the instructions from the installation
 
 ## Archive Link
